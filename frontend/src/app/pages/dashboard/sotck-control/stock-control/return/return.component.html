@@ -1,0 +1,130 @@
+<div class="p-4 container">
+  <div class="h3 mb-3 d-flex align-items-center" *ngIf="query">
+    <button mat-icon-button type="button" (click)="goBack()">
+      <mat-icon>keyboard_backspace</mat-icon>
+    </button>
+    {{query.action}} Stock Return
+  </div>
+
+  <form [formGroup]="stockReturnForm" (ngSubmit)="submit()" class="p-2">
+    <div class="w-100 bg-grey p-2 h5">
+      Details
+    </div>
+
+    <div class="row pt-3">
+      <div class="col-md-6">
+        <label>Return No.</label>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput formControlName="order_number" type="text"/>
+          <mat-error *ngIf="stockReturnForm.get('order_number').hasError('required')">Required field</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <label>Name / reference</label>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput formControlName="note" type="text"/>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <label>Delivery to</label>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-select formControlName="deliver_to">
+            <mat-option value="">Choose a supplier</mat-option>
+            <mat-option *ngFor="let supplier of suppliers" [value]="supplier.name">{{supplier.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <label>Delivery due</label>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput formControlName="delivery_date" [matDatepicker]="delivery_due"/>
+          <mat-datepicker-toggle matPrefix [for]="delivery_due"></mat-datepicker-toggle>
+          <mat-datepicker #delivery_due></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row pb-4 mb-4 border-bottom">
+      <div class="col-md-6">
+        <label>Return from</label>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-select formControlName="supplier">
+            <mat-option value="">Choose a supplier</mat-option>
+            <mat-option *ngFor="let outlet of outlets" [value]="outlet.trim().toLowerCase()">
+              {{outlet}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <label>Supplier invoice</label>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput formControlName="invoice_number" type="text"/>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="h5 font-weight-bold mb-3 w-100">Products</div>
+    <div class="row pb-4 mb-3 border-bottom">
+      <div class="col-md-3">
+        Choose products to return by searching or scanning.
+      </div>
+
+      <div class="col-md-9">
+        <ng-select class="slt-custom mb-3" [(ngModel)]="selectedProduct" [ngModelOptions]="{standalone: true}"
+                   (change)="returnProduct()"   placeholder="Search or scan to add a product">
+          <ng-option *ngFor="let product of products" [value]="product">{{product.name}}</ng-option>
+        </ng-select>
+
+        <table class="w-100 mb-4">
+          <thead>
+          <tr>
+            <th>Order</th>
+            <th>Product</th>
+            <th>Stock on Hand</th>
+            <th>Returned Quantity</th>
+            <th>Supply Price</th>
+            <th>Total Cost</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <tr *ngFor="let product of productReturned; let i = index;">
+            <td>{{ i + 1}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.inventory}}</td>
+            <td class="w-p-60">
+              <mat-form-field appearance="outline" class="w-50">
+                <input matInput [(ngModel)]="product.qty" [ngModelOptions]="{standalone: true}">
+              </mat-form-field>
+            </td>
+            <td class="w-p-60">
+              <mat-form-field appearance="outline" class="w-50">
+                <input matInput [(ngModel)]="product.supply_price" [ngModelOptions]="{standalone: true}">
+              </mat-form-field>
+            </td>
+            <td>{{user.currency_code}}${{product.qty * product.supply_price}}</td>
+            <td>
+              <button mat-icon-button (click)="removeReturn(i)" color="primary">
+                <mat-icon >cancel</mat-icon>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="text-right p-3 md font-weight-bold border-top pb-4">
+          {{user.currency_code}}${{getTotalCost(productReturned)}}
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end">
+      <div>
+        <button mat-button type="button" class="bg-custom-1" (click)="goBack()">Cancel</button>
+        <button mat-button class="ml-3 bg-custom-2">Save</button>
+      </div>
+    </div>
+  </form>
+</div>

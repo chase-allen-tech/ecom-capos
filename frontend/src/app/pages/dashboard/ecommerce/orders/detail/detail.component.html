@@ -1,0 +1,96 @@
+<div class="container">
+    <div class="">
+        <div class="row">
+            <div class="h3 mb-3 container d-flex align-items-center">
+              <button mat-icon-button type="button" (click)="goBack()">
+                <mat-icon>keyboard_backspace</mat-icon>
+              </button>
+              Thank you for your order!
+            </div>
+      
+            <div class="container">
+              <div class="d-flex justify-content-between align-items-center bg-grey p-4">
+                <p>Your order has been received and new is being processed. <br/>Your order details are shown below for your reference.</p>
+              </div>
+            </div>
+
+            <mat-card class="capos-card p-4 fill mb-4">
+                <mat-card-header>
+                    <mat-card-title>Order: #{{order.id}}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <table class="order-table border fill">
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                        <tr>
+                            <td>{{order.productName}}</td>
+                            <td>{{order.quantity}}</td>
+                            <td>{{order.price}}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">Cart Subtotal:</th>
+                            <td>{{order.cartSubtotal}}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">Shipping:</th>
+                            <td>{{order.shipping}}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">Order Total:</th>
+                            <td>{{order.orderTotal}}</td>
+                        </tr>
+                    </table>
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card class="capos-card p-4 fill mb-4 ">
+                <mat-card-header>
+                    <mat-card-title>Customer Details:</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <table>
+                        <tr>
+                            <th>Email:</th>
+                            <td>{{customer.email}}</td>
+                        </tr>
+                        <tr>
+                            <th>Tel:</th>
+                            <td>{{customer.tel}}</td>
+                        </tr>
+                    </table>
+                </mat-card-content>
+            </mat-card>
+            <div fxLayout="row" 
+                fxLayout.gt-lg="row"  
+                fxLayout.gt-md="row"  
+                fxLayout.gt-sm="column"  
+                fxLayout.gt-xs="column"
+                fxLayout.xs="column" class="fill">
+                <mat-card class="capos-card p-4" fxFlex="50%">
+                    <mat-card-header>
+                        <mat-card-title>Billing Address:</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p>{{Billing.a1}}</p>
+                        <p>{{Billing.a2}}</p>
+                        <p>{{Billing.a3}}</p>
+                    </mat-card-content>
+                </mat-card>
+                <mat-card class="capos-card p-4" fxFlex="50%">
+                    <mat-card-header>
+                        <mat-card-title>Shipping Address:</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p>{{Shipping.a1}}</p>
+                        <p>{{Shipping.a2}}</p>
+                        <p>{{Shipping.a3}}</p>
+                    </mat-card-content>
+                </mat-card>
+
+        </div>
+    </div>
+</div>
+  

@@ -1,0 +1,2 @@
+handle,sku,name,description,type,variant_inventory,tag,supply_price,retail_price,brand,supplier,supplier_code,enabled,tracking_inventory,tax,inventory,reorder_point,reorder_amount
+handle aaa,asdfasdff,New product,This is for test,bbbb,1,aa; bb,12,24,Nike,Yery team,1000,1,1,default tax,12,1,3

@@ -1,0 +1,66 @@
+<mat-card class="capos-card p-4">
+	<mat-card-content>
+		<div class="table-container">
+			<form [formGroup]="searchForm" (ngSubmit)="search()">
+				<div class="d-flex">
+					<div class="w-25 p-1">
+						<label>Status</label>
+						<mat-form-field appearance="outline" class="w-100">
+							<mat-select formControlName="status">
+								<mat-option value="active">Active</mat-option>
+								<mat-option value="inactive">Inactive</mat-option>
+								<mat-option value="all">All Status</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+		
+					<div class="w-25 p-1">
+						<label>Customer</label>
+						<mat-form-field appearance="outline" class="w-100">
+							<input matInput (keyup)="search()" formControlName="customer" placeholder="Enter customer's name">
+						</mat-form-field>
+					</div>
+		
+					<div class="d-flex justify-content-end align-items-center p-1">
+						<button mat-raised-button class="bg-custom-1 ml-1 mt-3 text-white">Search</button>
+					</div>
+				</div>
+			</form>
+
+			<div class="table-wrapper">
+				<table mat-table [dataSource]="salesData" class="fill">
+					<ng-container matColumnDef="receipt">
+						<th mat-header-cell *matHeaderCellDef>Receipt</th>
+						<td mat-cell *matCellDef="let element"> {{element.receipt}} </td>
+					</ng-container>
+					<ng-container matColumnDef="customer">
+						<th mat-header-cell *matHeaderCellDef>Customer</th>
+						<td mat-cell *matCellDef="let element"> {{element.customer}} </td>
+					</ng-container>
+					<ng-container matColumnDef="soldBy">
+						<th mat-header-cell *matHeaderCellDef>Sold by</th>
+						<td mat-cell *matCellDef="let element"> {{element.soldBy}} </td>
+					</ng-container>
+					<ng-container matColumnDef="note">
+						<th mat-header-cell *matHeaderCellDef>Note</th>
+						<td mat-cell *matCellDef="let element"> {{element.note}} </td>
+					</ng-container>
+					<ng-container matColumnDef="soldTotal">
+						<th mat-header-cell *matHeaderCellDef>Sold Total</th>
+						<td mat-cell *matCellDef="let element"> {{element.soldTotal}} </td>
+					</ng-container>
+					<ng-container matColumnDef="status">
+						<th mat-header-cell *matHeaderCellDef>Status</th>
+						<td mat-cell *matCellDef="let element"> {{element.status}} </td>
+					</ng-container>
+			
+					<tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+					<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+				</table>
+			</div>
+			<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+		</div>
+	</mat-card-content>
+</mat-card>
+
+

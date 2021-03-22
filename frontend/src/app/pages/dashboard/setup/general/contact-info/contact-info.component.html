@@ -1,0 +1,36 @@
+<div class="container p-4">
+    <form [formGroup]="contactForm" (ngSubmit)="submit()" fxLayout="column" class="bg-white p-4">
+    <div fxLayout="row" fxLayout.gt-lg="row" fxLayout.gt-md="row" fxLayout.gt-sm="row"
+        fxLayout.gt-xs="column">
+        <div fxFlex="50%" class="p-1">
+                    <mat-form-field class="w-100">
+                        <mat-label>Contact Name</mat-label>
+                        <input type="text" matInput formControlName="contactName" placeholder="Store name..." required />
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>Phone Number</mat-label>
+                        <input type="text" matInput formControlName="phone" placeholder="+1 555-5555-1234" required />
+                    </mat-form-field>
+                    <input type="file" formControlName="ssss" />
+                    <mat-form-field  class="w-100">
+                        <mat-label>Profile Image</mat-label>
+                        <ngx-mat-file-input formControlName="profileImage" placeholder="Choose profile image..." [accept]="'image/*'"></ngx-mat-file-input>
+                        <mat-icon matSuffix>folder</mat-icon>
+                    </mat-form-field>
+        </div>
+        <div fxFlex="50%" class="p-1">
+                    <mat-form-field class="w-100">
+                        <mat-label>Web Site</mat-label>
+                        <input type="url" matInput formControlName="website" required />
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>Twitter</mat-label>
+                        <input type="url" matInput formControlName="twitter" required />
+                    </mat-form-field>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center p-1">
+        <button type="submit" mat-raised-button color="primary">Submit</button>
+    </div>
+</form>
+</div>

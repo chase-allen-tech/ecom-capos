@@ -1,0 +1,88 @@
+<div class="container">
+    <div class="capos-title-bar">
+        Sell - Close
+    </div>
+
+    <div class="capos-help-bar">
+        <p class="help-text">Help about Sell-close</p>
+        <div class="help-buttons">
+            <button mat-button (click)="registerSell()" class="capos-help-button">Register</button>
+        </div>
+    </div>
+
+    <mat-card class="capos-card p-4 mb-4">
+        <mat-card-header>
+            <mat-card-title>Register Details</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="info-table">
+                <table>
+                    <tr>
+                        <th>Outlet</th>
+                        <td>{{outlet}}</td>
+                    </tr>
+                    <tr>
+                        <th>Register</th>
+                        <td>{{register}}</td>
+                    </tr>
+                    <tr>
+                        <th>Closure</th>
+                        <td>{{closure}}</td>
+                    </tr>
+                </table>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card class="capos-card p-4 mb-4">
+        <mat-card-header>
+            <mat-card-title>Payments Summary</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>Balance your register by entering the amount counted from the till and other payment terminals into the
+                empty fields here.</p>
+
+            <div class="table-container">
+                <div class="table-wrapper">
+                <table mat-table [dataSource]="paymentData" class="fill" matSort>
+
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="type">
+                        <th mat-header-cell *matHeaderCellDef>Payment Types</th>
+                        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="expected">
+                        <th mat-header-cell *matHeaderCellDef>Expected</th>
+                        <td mat-cell *matCellDef="let element"> {{element.expected}} </td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="counted">
+                        <th mat-header-cell *matHeaderCellDef>Counted</th>
+                        <td mat-cell *matCellDef="let element"> {{element.counted}} </td>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="differences">
+                        <th mat-header-cell *matHeaderCellDef>Differences</th>
+                        <td mat-cell *matCellDef="let element"> {{element.differences}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                </div>
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            </div>
+
+        </mat-card-content>
+        <mat-card-actions>
+            <div class="d-flex justify-content-between align-items-center">
+            <button mat-button (click)="closeRegister()" class="bg-custom-2 text-white">Open Register</button>
+        </div>
+          </mat-card-actions>
+      </mat-card>
+
+</div>

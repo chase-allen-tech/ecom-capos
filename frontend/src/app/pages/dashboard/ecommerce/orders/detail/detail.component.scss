@@ -1,0 +1,17 @@
+.order-table{
+    th, td{
+        padding: 8px 12px 6px 4px;
+        text-align: left;
+    }
+
+
+}
+
+.order-table.border{
+    
+
+    th, td{
+        border-collapse: collapse;
+        border:2px solid #c3dbeb56;
+    }
+}

@@ -1,0 +1,20 @@
+<div class="p-3">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="h3" *ngIf="data.action === 'edit'">Edit Payment Type</div>
+        <div class="h3" *ngIf="data.action === 'add'">Add New Payment Type</div>
+        <button mat-mini-fab [matDialogClose]="false">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <form [formGroup]="paymentForm" (ngSubmit)="doAction()">
+        <mat-form-field class="w-100">
+            <mat-label>Payment Type Name</mat-label>
+            <input type="text" matInput formControlName="name" placeholder="Payment Name..." required/>
+        </mat-form-field>
+        <div class="d-flex justify-content-end align-items-right p-1">
+                <button mat-raised-button class="bg-custom-1 ml-1 mt-3 text-white"
+                    color="primary">Save</button>
+        </div>
+    </form>
+</div>

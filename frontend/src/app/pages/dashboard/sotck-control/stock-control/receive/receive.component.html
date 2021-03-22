@@ -1,0 +1,148 @@
+<div class="p-4">
+  <div class="row">
+    <form [formGroup]="receiveStockForm" (ngSubmit)="submit()" class="w-100">
+      <div class="h3 mb-3 container d-flex align-items-center">
+        <button mat-icon-button type="button" (click)="goBack()">
+          <mat-icon>keyboard_backspace</mat-icon>
+        </button>
+        Receive Stock
+      </div>
+
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center  p-4 bg-grey" >
+          <div class="w-50">Count and receive products that have been delivered
+            from your suppliers to ensure your inventory stays accurate. <a class="cursor">Need help ?</a></div>
+          <div class="d-flex">
+            <button mat-raised-button type="button" (click)="goBack()" class="text-white px-3 bg-custom-1">Cancel
+            </button>
+            <button mat-raised-button type="submit" class="text-white px-3 ml-3 bg-custom-2">Receive</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container pt-5">
+        <div class="h5 font-weight-bold mb-3">Delivery Details</div>
+        <div class="row mb-5 pb-5 border-bottom " >
+
+          <div class="col-md-3">
+            Adding details for this order helps you stay on top of all your orders and main data
+          </div>
+          <div class="col-md-9">
+            <div class="d-flex">
+              <div class="w-50 p-2">
+                <label>Supplier</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-select formControlName="supplier">
+                    <mat-option value="">Choose a supplier</mat-option>
+                    <mat-option *ngFor="let supplier of suppliers" [value]="supplier.name">{{supplier.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div class="w-50 p-2">
+                <label>Delivered to</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-select formControlName="deliver_to">
+                    <mat-option value="">Choose a outlet</mat-option>
+                    <mat-option *ngFor="let outlet of outlets" [value]="outlet.trim().toLowerCase()">
+                      {{outlet}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="d-flex">
+              <div class="w-50 p-2">
+                <label>Supplier Invoice Number</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput formControlName="invoice_number" placeholder="Type supplier invoice number">
+                </mat-form-field>
+              </div>
+
+              <div class="w-50 p-2">
+                <label>Delivery Date</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput formControlName="delivery_date" [matDatepicker]="delivery_date"  placeholder="Choose a date">
+                  <mat-datepicker #delivery_date></mat-datepicker>
+                  <mat-datepicker-toggle matSuffix [for]="delivery_date"></mat-datepicker-toggle>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="d-flex">
+              <div class="w-50 p-2">
+                <label>Order Number <small>This is to help to identify this order</small></label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput formControlName="order_number" placeholder="Type product name">
+                </mat-form-field>
+              </div>
+
+              <div class="w-50 p-2">
+                <label>Note</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <textarea matInput formControlName="note" placeholder="Enter a note for this order"></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="h5 font-weight-bold mb-3">Products</div>
+        <div class="row">
+          <div class="col-md-3">
+            Choose products to receive by searching or scanning.
+          </div>
+
+          <div class="col-md-9">
+            <ng-select class="slt-custom mb-3" [(ngModel)]="selectedProduct" [ngModelOptions]="{standalone: true}"
+                       (change)="receiveProduct()"   placeholder="Search or scan to add a product">
+              <ng-option *ngFor="let product of products" [value]="product">{{product.name}}</ng-option>
+            </ng-select>
+
+            <table class="w-100 mb-4">
+              <thead>
+              <tr>
+                <th>Product</th>
+                <th>Current Inventory</th>
+                <th>Received Quantity</th>
+                <th>Supplier</th>
+                <th>Supply Price</th>
+                <th>Total Cost</th>
+                <th>Action</th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <tr *ngFor="let product of productReceived; let i = index;">
+                <td>{{product.name}}</td>
+                <td>{{product.inventory}}</td>
+                <td>
+                  <mat-form-field appearance="outline" class="w-50">
+                    <input matInput [(ngModel)]="product.qty" [ngModelOptions]="{standalone: true}">
+                  </mat-form-field>
+                </td>
+                <td>{{product.supplier}}</td>
+                <td>
+                  <mat-form-field appearance="outline" class="w-50">
+                    <input matInput [(ngModel)]="product.supply_price" [ngModelOptions]="{standalone: true}">
+                  </mat-form-field>
+                </td>
+                <td>{{user.currency_code}}${{product.qty * product.supply_price}}</td>
+                <td>
+                  <button mat-icon-button (click)="removeReceive(i)" color="primary">
+                    <mat-icon >cancel</mat-icon>
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <div class="text-right p-3 md font-weight-bold border-bottom pb-4">
+              {{user.currency_code}}${{getTotalCost(productReceived)}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

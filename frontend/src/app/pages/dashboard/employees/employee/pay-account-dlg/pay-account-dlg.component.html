@@ -1,0 +1,33 @@
+<div class="p-3">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="h3">Pay Account Balance</div>
+    <button mat-mini-fab [matDialogClose]="true">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <p>We will pay off your oldest Account and Layby sales first.</p>
+  <label>Amount</label>
+  <mat-form-field appearance="outline" class="w-100">
+    <input matInput type="number" placeholder="E.g. 32.45 " [(ngModel)]="data.amount">
+  </mat-form-field>
+
+  <label>Payment type</label>
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-select [(ngModel)]="data.type">
+      <mat-option *ngFor="let type of types" [value]="type">{{type}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <label>Register</label>
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-select [(ngModel)]="data.register">
+      <mat-option *ngFor="let register of registers" [value]="register">{{register}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="d-flex justify-content-end">
+    <button mat-stroked-button (click)="payBalance()" [disabled]="data.amount < 0" class="bg-custom-1 text-white btn-custom">
+      Pay Balance
+    </button>
+  </div>
+</div>

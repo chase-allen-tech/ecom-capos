@@ -1,0 +1,145 @@
+<div class="container">
+    <div class="capos-title-bar">
+        Crete New Order
+    </div>
+
+    <mat-card class="capos-card p-4 mb-4">
+		<mat-card-content fxLayout="row" fxLayout.gt-lg="row" 
+        fxLayout.gt-md="row" fxLayout.gt-sm="column"
+        fxLayout.gt-xs="column">
+            <form [formGroup]="orderForm" (ngSubmit)="submit()" fxFlex="35%" class="p-2">
+                    <mat-form-field class="w-100">
+                        <mat-label>Date & Time</mat-label>
+                        <input type="text" matInput formControlName="time" readonly />
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>Name/Reference</mat-label>
+                        <input type="text" matInput formControlName="name" placeholder="New order name" required />
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>Order From</mat-label>
+                        <mat-select formControlName="orderFrom" required>
+                            <mat-option value="">Select ...</mat-option>
+                            <mat-option *ngFor="let order of orderList" [value]="order">{{order}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>Delivery To</mat-label>
+                        <mat-select formControlName="deliveryTo" required>
+                            <mat-option *ngFor="let dest of destList" [value]="dest">{{dest}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>Delivery Due</mat-label>
+                        <input matInput [matDatepicker]="dd" readonly formControlName="deliveryDue" required>
+                        <mat-datepicker-toggle matSuffix [for]="dd"></mat-datepicker-toggle>
+                        <mat-datepicker #dd disabled="false"></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field  class="w-100">
+                        <mat-label>Import Order</mat-label>
+                        <ngx-mat-file-input formControlName="orderFile" placeholder="Choose order file..."></ngx-mat-file-input>
+                        <mat-icon matSuffix>folder</mat-icon>
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>Supplier</mat-label>
+                        <input type="text" matInput formControlName="supplierName" placeholder="Enter customer name" required />
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>Supplier Address</mat-label>
+                        <input type="text" matInput formControlName="supplierAddress" placeholder="Enter customer address" required />
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>Supplier Phone</mat-label>
+                        <input type="text" matInput formControlName="supplierPhone" placeholder="enter customer phone" required />
+                    </mat-form-field>
+
+                
+            </form>
+            
+            <mat-card class="capos-card p-2" fxFlex="65%">
+                <mat-card-header>
+                    <mat-card-title>
+                        Select Products
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="table-container mb-1">
+                        <div class="table-wrapper">
+                            <table mat-table [dataSource]="dataSource" class="fill">
+                                <ng-container matColumnDef="name">
+                                    <th mat-header-cell *matHeaderCellDef>Product</th>
+                                    <td mat-cell *matCellDef="let element;let i = index">
+                                        <mat-form-field class="w-100">
+                                        <mat-select required [(ngModel)]="productData[i].name">
+                                            <mat-option *ngFor="let p of productList" [value]="p">{{p}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="quantity">
+                                    <th mat-header-cell *matHeaderCellDef>Qty</th>
+                                    <td mat-cell *matCellDef="let element;let i = index">
+                                        <mat-form-field>
+                                        <input matInput type="text" required [(ngModel)]="productData[i].quantity" />
+                                    </mat-form-field>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="rate">
+                                    <th mat-header-cell *matHeaderCellDef>Rate</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.rate}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="amount">
+                                    <th mat-header-cell *matHeaderCellDef>Amount</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.quantity*element.rate}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="action">
+                                    <th mat-header-cell *matHeaderCellDef>
+                                        <button mat-mini-fab color="primary" (click)="addProduct()">
+                                            <mat-icon>add</mat-icon>
+                                        </button>
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <button mat-mini-fab color="danger" (click)="removeProduct(element)">
+                                            <mat-icon>clear</mat-icon>
+                                        </button>
+                                    </td>
+                                </ng-container>
+
+                                <tr mat-header-row *matHeaderRowDef="displayColumns; sticky: true"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div classs="width-sm">
+                        <mat-form-field class="w-100">
+                            <mat-label>Gross Amount</mat-label>
+                            <input type="text" matInput [(ngModel)]="grossAmount" readonly />
+                        </mat-form-field>
+                        <mat-form-field class="w-100">
+                            <mat-label>S-Charge 13 %</mat-label>
+                            <input type="text" matInput [(ngModel)]="sCharge" readonly />
+                        </mat-form-field>
+                        <mat-form-field class="w-100">
+                            <mat-label>Vat 10%</mat-label>
+                            <input type="text" matInput [(ngModel)]="vat" readonly />
+                        </mat-form-field>
+                        <mat-form-field class="w-100">
+                            <mat-label>Discount</mat-label>
+                            <input type="text" matInput [(ngModel)]="discount"required />
+                        </mat-form-field>
+                        <mat-form-field class="w-100">
+                            <mat-label>Net Amount</mat-label>
+                            <input type="text" matInput [(ngModel)]="newAmount" readonly />
+                        </mat-form-field>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="create()">Create</button>
+        </mat-card-actions>
+    </mat-card>
+
+    
+</div>

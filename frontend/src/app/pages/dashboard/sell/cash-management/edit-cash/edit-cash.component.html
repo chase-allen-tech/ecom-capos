@@ -1,0 +1,42 @@
+<div class="p-3">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <div class="h3" *ngIf="data.action === 'edit'">Edit Cash</div>
+      <div class="h3" *ngIf="data.action === 'add'">Add New Cash</div>
+      <button mat-mini-fab [matDialogClose]="false">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  
+    <form [formGroup]="cashForm" (ngSubmit)="doAction()">
+            <div class="form-group fill">
+                <label>Date</label>
+                <mat-form-field appearance="outline" class="w-100">
+                    <input matInput formControlName="date" required>
+                </mat-form-field>
+            </div>
+            <div class="form-group fill">
+                <label>User</label>
+                <mat-form-field appearance="outline" class="w-100">
+                    <input matInput formControlName="user" required>
+                </mat-form-field>
+            </div>
+            <div class="form-group fill">
+                <label>Reasons</label>
+                <mat-form-field appearance="outline" class="w-100">
+                    <input matInput formControlName="reasons" required>
+                </mat-form-field>
+            </div>
+            <div class="form-group fill">
+                <label>Transaction</label>
+                <mat-form-field appearance="outline" class="w-100">
+                    <input type="number" matInput formControlName="transaction" required>
+                </mat-form-field>
+            </div>
+
+            <div class="d-flex justify-content-end align-items-right w-25 p-1">
+                <div class="d-flex">
+                    <button mat-raised-button class="bg-custom-1 ml-1 mt-3 text-white float-right" color="primary">Save</button>
+                </div>
+            </div>
+    </form>
+  </div>

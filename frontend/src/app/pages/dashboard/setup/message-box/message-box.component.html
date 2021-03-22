@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="capos-title-bar">
+        Message Box Setup
+    </div>
+
+    <mat-card class="capos-card mt-4">
+        <mat-card-header class="justify-content-center">
+            <mat-card-title>
+                <h2>Set On and Off Confirmation Message Box</h2>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="text-center">
+            <div class="mb-1">
+                <ui-switch [(ngModel)]="status"></ui-switch>
+            </div>
+                <p>Confirmation Message Box is turned {{getStatusString()}}</p>
+        </mat-card-content>
+    </mat-card>
+</div>

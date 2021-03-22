@@ -1,0 +1,16 @@
+.border-top-3 {
+  border-top-width: 3px;
+}
+
+.border-bottom-1 {
+  border-bottom: 1px solid grey;
+}
+
+.vh-75 {
+  min-height: 75vh;
+}
+
+.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}

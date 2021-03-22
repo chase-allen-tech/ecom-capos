@@ -1,0 +1,78 @@
+<div class="container">
+
+    <div class="capos-help-bar">
+        <p class="help-text">Manage users and their sales targets. <a href="/help/setup/user">Need help</a>?</p>
+        <div class="help-buttons">
+            <button mat-button (click)="addUser()">Add User</button>
+        </div>
+    </div>
+
+    <mat-card class="capos-card p-4">
+        <div fxLayout="row" fxLayout.gt-lg="row" fxLayout.gt-md="row" fxLayout.gt-sm="row"
+        fxLayout.gt-xs="column" fxLayout.xs="column">
+        <div fxFlex="25%" class="p-1">
+            <label>Name</label>
+            <mat-form-field appearance="outline" class="w-100">
+                <input matInput [(ngModel)]="nameKey">
+            </mat-form-field>
+        </div>
+        <div fxFlex="25%" class="p-1">
+            <label>Role</label>
+            <mat-form-field appearance="outline" class="w-100">
+                <input matInput [(ngModel)]="roleKey">
+            </mat-form-field>
+        </div>
+        <div fxFlex="25%" class="p-1">
+            <label>Outlet</label>
+            <mat-form-field appearance="outline" class="w-100">
+                <input matInput [(ngModel)]="outletKey">
+            </mat-form-field>
+        </div>
+        <div fxFlex="25%" class="justify-content-end">
+            <button mat-raised-button class="bg-custom-1 text-white" (click)="search()">Search</button>
+        </div>
+    </div>
+		<mat-card-content>
+			<div class="table-container">
+				<div class="table-wrapper">
+					<table mat-table [dataSource]="pageData" class="fill">
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef>Name</th>
+                            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="role">
+                            <th mat-header-cell *matHeaderCellDef>Role</th>
+                            <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="outlet">
+                            <th mat-header-cell *matHeaderCellDef>Outlet</th>
+                            <td mat-cell *matCellDef="let element"> {{element.outlet}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="dailyTarget">
+                            <th mat-header-cell *matHeaderCellDef>Daily Target</th>
+                            <td mat-cell *matCellDef="let element"> {{element.dailyTarget}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="weeklyTarget">
+                            <th mat-header-cell *matHeaderCellDef>Weekly Target</th>
+                            <td mat-cell *matCellDef="let element"> {{element.weeklyTarget}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="monthlyTarget">
+                            <th mat-header-cell *matHeaderCellDef>Monthly Target</th>
+                            <td mat-cell *matCellDef="let element"> {{element.monthlyTarget}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="lastActive">
+                            <th mat-header-cell *matHeaderCellDef>Last Active</th>
+                            <td mat-cell *matCellDef="let element"> {{element.lastActive}} </td>
+                        </ng-container>
+    
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+				</div>
+				<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+			</div>
+
+		</mat-card-content>
+    </mat-card>
+
+</div>

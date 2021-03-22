@@ -1,0 +1,15 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title *ngIf="verifyStatus">Email Verification Success</mat-card-title>
+      <mat-card-title *ngIf="!verifyStatus">Email Verification Failed</mat-card-title>
+    </mat-card-header>
+
+    <div>
+      <span fxFlex></span>
+      <a routerLink="/auth/sign-in" routerLinkActive="active-link">Back to login ?</a>
+    </div>
+  </mat-card>
+
+</div>

@@ -1,0 +1,29 @@
+<div class="container p-4">
+    <div class="p-4 fill bg-white">
+        <div class="d-flex justify-content-end p-1">
+            <button mat-button (click)="moreOptions()" class="light-aqua-bg mr-1">More Options</button>
+            <button mat-button (click)="addTax()" class="light-aqua-bg">Add Tax</button>
+        </div>
+
+        <div class="table-container">
+            <table mat-table [dataSource]="pageData" class="fill">
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef>Tax Name</th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+                <ng-container matColumnDef="amount">
+                    <th mat-header-cell *matHeaderCellDef>Tax Amount</th>
+                    <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+                </ng-container>
+                <ng-container matColumnDef="tax">
+                    <th mat-header-cell *matHeaderCellDef>Tax</th>
+                    <td mat-cell *matCellDef="let element"> {{element.tax}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,79 @@
+<div class="container p-4">
+  <div class="h2 mb-2">{{product.name}}</div>
+  <div class="d-flex border-bottom pb-3 mb-3">
+    <div>
+      <img *ngIf="product.image" [src]="genImageUrl(product.image)" class="w-25 h-auto">
+      <img *ngIf="!product.image" src="/assets/image/dashboard/product/product_default.png" class="w-25 h-auto">
+    </div>
+    <div class="ml-4">
+      <p>{{product.description}}</p>
+      <div>
+        <button mat-button (click)="openTag(tag)" class="mb-2 bg-grey"
+                *ngFor="let tag of product.tag; let i = index" [ngClass]="{'ml-3': i>0}">
+          {{tag}}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex pb-3 mv-3 border-bottom">
+    <div class="w-50">
+      <div class="d-flex font-weight-bold">
+        <div>
+          <p class="">Type</p>
+          <p class="">Handle</p>
+          <p class="">Supplier</p>
+        </div>
+
+        <div class="ml-4">
+          <p class="">{{product.type}}</p>
+          <p class="">{{product.handle}}</p>
+          <p class="">{{product.supply_price}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="w-50">
+      <div class="d-flex">
+        <div class="font-weight-bold">
+          <p class="">Retail price</p>
+          <p class="">Supply price</p>
+        </div>
+
+        <div class="ml-4">
+          <p class="">{{product.retail_price}}</p>
+          <p class="">{{product.supply_price}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pt-3" *ngIf="product.variant_products && product.variant_products.length">
+    <div class="h3 mb-2">
+      Inventory
+    </div>
+
+    <table class="table-striped w-100">
+      <thead>
+        <tr>
+          <th *ngFor="let attr of product.attributes">{{attr.attribute}}</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let variant of variants">
+        <td *ngFor="let p of variant.split('/')">{{p}}</td>
+        <td>
+          <ng-container *ngIf="!variant.supply_price">
+            {{product.supply_price}}
+          </ng-container>
+
+          <ng-container *ngIf="variant.supply_price">
+            {{variant.supply_price}}
+          </ng-container>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

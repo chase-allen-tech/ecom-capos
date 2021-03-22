@@ -1,0 +1,74 @@
+<div class="container p-4" fxLayout="column">
+	<mat-card class="capos-card mb-2">
+		<mat-card-header>
+			<mat-card-title>
+				Store Status
+			</mat-card-title>
+		</mat-card-header>
+		<mat-card-content>
+			<div class="bg-white p-2" fxLayout="row" fxLayout.gt-lg="row" fxLayout.gt-md="row" fxLayout.gt-sm="row"
+				fxLayout.gt-xs="column">
+				<div fxFlex="50%" class="mr-5 text-center">
+					<ui-switch [(ngModel)]="storeStatus"></ui-switch>
+				</div>
+				<div fxFlex="50%">
+					<p>Your store is currently offline.</p>
+					<p>Upgrade your plan to publish your store.</p>
+				</div>
+			</div>
+		</mat-card-content>
+		<mat-card-actions>
+			<div class="d-flex justify-content-start p-1">
+				<button mat-raised-button color="primary">Upgrade Plan</button>
+			</div>
+		</mat-card-actions>
+	</mat-card>
+
+	<mat-card class="capos-card mb-2">
+		<mat-card-header>
+			<mat-card-title>
+				Account
+			</mat-card-title>
+		</mat-card-header>
+		<mat-card-content>
+			<form [formGroup]="accountForm" (ngSubmit)="submit()" fxLayout="column">
+				<div class="bg-white p-2" fxLayout="row" fxLayout.gt-lg="row" fxLayout.gt-md="row"
+					fxLayout.gt-sm="row" fxLayout.gt-xs="column">
+						<div fxFlex="50%" class="p-1">
+							<mat-form-field class="w-100">
+									<mat-label>Store Name</mat-label>
+									<input type="text" matInput formControlName="storeName" placeholder="Store name..." required/>
+							</mat-form-field>    
+					</div>
+					<div fxFlex="50%" class="p-1">
+							<mat-form-field class="w-100">
+									<mat-label>Store Email</mat-label>
+									<input type="text" matInput formControlName="storeEmail" placeholder="Store email..." required/>
+							</mat-form-field>    
+					</div>
+				</div>
+				<div class="bg-white p-2" fxLayout="row" fxLayout.gt-lg="row" fxLayout.gt-md="row"
+					fxLayout.gt-sm="row" fxLayout.gt-xs="column">
+					<div  fxFlex="50%" class="p-1">
+						<mat-form-field  class="w-100">
+							<mat-label>Store Logo</mat-label>
+							<ngx-mat-file-input formControlName="logoFile" placeholder="Choose logo file for store..." [accept]="'image/*'"></ngx-mat-file-input>
+							<mat-icon matSuffix>folder</mat-icon>
+						</mat-form-field>
+					</div>
+					<div  fxFlex="50%" class="p-1">
+						<mat-form-field  class="w-100">
+							<mat-label>Store Banner</mat-label>
+							<ngx-mat-file-input formControlName="bannerFile" placeholder="Choose banner file for store..." [accept]="'image/*'"></ngx-mat-file-input>
+							<mat-icon matSuffix>folder</mat-icon>
+						</mat-form-field>
+					</div>
+				</div>
+				<div class="d-flex justify-content-center p-1">
+					<button mat-raised-button color="primary">Submit</button>
+				</div>
+			</form>
+
+		</mat-card-content>
+	</mat-card>
+</div>

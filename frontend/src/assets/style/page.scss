@@ -1,0 +1,181 @@
+/*
+Template Name: Material Pro Admin
+Author: Wrappixel
+Email: niravjoshi87@gmail.com
+File: scss
+*/
+
+
+/*==============================================================
+ For all pages
+ ============================================================== */
+
+
+/*******************
+ Main container
+*******************/
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  a {
+    text-decoration: none;
+  }
+}
+
+.mat-drawer-container{
+  background: $bodycolor;
+}
+
+html .page-wrapper{
+  height:calc(100vh - 104px);
+  .page-content{
+    padding: 15px;
+  }
+}
+
+
+// Sticky navbar
+
+.custom-sticky-nav {
+  position: fixed;
+  top: 64px;
+  left: auto;
+  right: auto;
+  z-index: 4;
+}
+
+/*Font size class*/
+.xxl {
+  font-family: Mukta Mahee;
+  font-size: 80px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 133px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+.xl {
+  font-family: Mukta Mahee;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 80px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+
+.lg {
+  font-family: Mukta Mahee;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 60px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+
+.md {
+  font-family: Lato;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.sm {
+  font-family: Lato;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+/*
+Position class*/
+.align-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+/*
+Custom background */
+.bg-grey {
+  background: #e5eaed;
+}
+.bg-custom-1 {
+  background: #6692b0;
+}
+
+.bg-custom-2 {
+  background: #41af4b;
+}
+
+/*
+Custom button*/
+.btn-custom {
+  font-size: 20px;
+  font-weight: 500;
+  height: 50px;
+}
+
+
+// Cursor pointer class
+.cursor {
+  cursor: pointer
+}
+
+
+// Custom ng select class
+.slt-custom.ng-select .ng-select-container {
+  min-height: 50px;
+  background-color: transparent;
+}
+.slt-custom.ng-select .ng-select-container .ng-value-container .ng-input>input {
+  height: 40px;
+}
+
+// Invalid class
+.is-invalid {
+  border-color: #dc3545
+}
+// Active border class
+.active-border {
+  border: 2px solid green!important;
+}
+
+/*Form filed invalid class*/
+
+.label-success {
+  background: #5cb85c;
+}
+.label-danger {
+  background: #d9534f;
+}
+
+// Custom pixel width
+.w-p-60 {
+  width: 60px;
+}
+.w-p-120 {
+  max-width: 120px;
+}
+
+// Custom text decoration
+.text-decoration {
+  text-decoration: line-through ;
+}

@@ -1,0 +1,62 @@
+<div class="container p-4" fxLayout="column">
+	<mat-card class="mb-4">
+		<mat-card-header class="justify-content-center">
+			<mat-card-title class="text-center justify-content-center">
+				<h2>Buy Online, Pick Up In-Store</h2>
+			</mat-card-title>
+		</mat-card-header>
+		<mat-card-content>
+			<p>Click & Collect lets your customers buy online and pick up their orders in-store at there own convenience.</p>
+        </mat-card-content>
+        <mat-card-actions>
+			<div class="d-flex justify-content-center mb-5">
+				<button mat-raised-button color="primary" (click)="setEnable()">Enable Click & Collect</button>
+			</div>
+		</mat-card-actions>
+    </mat-card>
+    
+    <div class="bg-white p-2" 
+        fxLayout="row" 
+        fxLayout.gt-lg="row" 
+        fxLayout.gt-md="row"
+        fxLayout.gt-sm="row" 
+        fxLayout.gt-xs="column">
+            <div fxFlex="33.3333%" class="p-1 h-100">
+                <mat-card class="">
+                    <mat-card-header>
+                        <mat-card-title class="text-center fill">
+                            <h3>Let shoppers make purchases on their own terms.</h3>
+                        </mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p>Click & Collect lets your customers pick up purchases at their own convenience — no delivery, no tracking, no waiting!</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div fxFlex="33.3333%" class="p-1 h-100">
+                <mat-card class="">
+                    <mat-card-header>
+                        <mat-card-title class="text-center fill">
+                            <h3>Get a competitive edge over online sellers.</h3>
+                        </mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p>Stack up against ecommerce giants with face-to-face relationships, tailored shopping experiences, and on-the-spot exchanges in-store.</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div fxFlex="33.3333%" class="p-1 h-100">
+                <mat-card class="">
+                    <mat-card-header> 
+                        <mat-card-title class="text-center fill">
+                            <h3>Upsell and cross-sell when customers arrive.</h3>
+                        </mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p>Have the perfect additions ready at the counter — whether that’s a matching belt or set of headphones — to go with an online purchase.</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+    </div>
+</div>

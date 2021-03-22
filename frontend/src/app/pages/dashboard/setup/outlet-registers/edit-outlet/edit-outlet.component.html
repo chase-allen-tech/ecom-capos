@@ -1,0 +1,117 @@
+<div class="container">
+    <div class="">
+        <div class="row">
+            <div class="h3 mb-3 container d-flex align-items-center">
+                <button mat-icon-button type="button" (click)="goBack()">
+                    <mat-icon>keyboard_backspace</mat-icon>
+                </button>
+                Add Outlet
+            </div>
+
+            <form [formGroup]="outletForm" (ngSubmit)="submit()"  class="bg-white p-4">
+            <div fxLayout="row"
+            fxLayout.gt-lg="row" 
+            fxLayout.gt-md="row" 
+            fxLayout.gt-sm="row"
+            fxLayout.gt-xs="column">
+                <mat-card class="capos-card p-4 fill mb-4 " fxFlex="50">
+                    <mat-card-header>
+                        <mat-card-title>Outlet Information</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <mat-form-field class="w-100">
+                            <mat-label>Outlet Name</mat-label>
+                            <input type="text" matInput formControlName="name" placeholder="Outlet name..." required />
+                        </mat-form-field>
+                        <mat-form-field class="w-100">
+                            <mat-label>Supulier return prefix</mat-label>
+                            <input type="text" matInput formControlName="supplierReturnPrefix" placeholder="MAI" required />
+                        </mat-form-field>
+                        <mat-form-field class="w-100">
+                            <mat-label>Supulier return number</mat-label>
+                            <input type="number" matInput formControlName="supplierReturnNumber" placeholder="1" required />
+                        </mat-form-field>
+                        <mat-form-field class="w-100">
+                            <mat-label>Order number prefix</mat-label>
+                            <input type="text" matInput formControlName="orderNumberPrefix" placeholder="MAI" required />
+                        </mat-form-field>
+                        <mat-form-field class="w-100">
+                            <mat-label>Order number</mat-label>
+                            <input type="number" matInput formControlName="orderNumber" placeholder="1" required />
+                        </mat-form-field>
+                        <mat-form-field class="w-100">
+                            <mat-label>Default sales tax</mat-label>
+                            <mat-select formControlName="defaultTax" required>
+                                <mat-option *ngFor="let tax of taxList" [value]="tax.id">
+                                  {{tax.name}}
+                                </mat-option>
+                              </mat-select>
+                        </mat-form-field>
+                    </mat-card-content>
+                </mat-card>
+                <mat-card class="capos-card p-4 fill mb-4 " fxFlex="50">
+                    <mat-card-header>
+                        <mat-card-title>Physical Address and Contact Details</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <mat-form-field class="w-100">
+                            <mat-label>Street</mat-label>
+                            <input type="text" matInput formControlName="street" required />
+                        </mat-form-field>
+                        <mat-form-field class="w-100">
+                            <mat-label>City</mat-label>
+                            <input type="text" matInput formControlName="city" required />
+                        </mat-form-field>
+                        <mat-form-field class="w-100">
+                            <mat-label>Suburb</mat-label>
+                            <input type="text" matInput formControlName="suburb" required />
+                        </mat-form-field>
+                        <mat-form-field class="w-100">
+                            <mat-label>State</mat-label>
+                            <mat-select formControlName="state" required>
+                                <mat-option *ngFor="let s of stateList" [value]="s">
+                                  {{s}}
+                                </mat-option>
+                              </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="w-100">
+                            <mat-label>Country</mat-label>
+                            <mat-select formControlName="country" required>
+                                <mat-option *ngFor="let c of countryList" [value]="c">
+                                  {{c}}
+                                </mat-option>
+                              </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="w-100">
+                            <mat-label>Time zone</mat-label>
+                            <mat-select formControlName="timezone" required>
+                                <mat-option *ngFor="let c of timezoneList" [value]="t">
+                                  {{t}}
+                                </mat-option>
+                              </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="w-100">
+                            <mat-label>Email</mat-label>
+                            <input type="text" matInput formControlName="email" required />
+                        </mat-form-field>
+                        <mat-form-field class="w-100">
+                            <mat-label>Phone Number</mat-label>
+                            <input type="text" matInput formControlName="phone" required />
+                        </mat-form-field>
+                        <mat-form-field class="w-100">
+                            <mat-label>Twitter</mat-label>
+                            <input type="text" matInput formControlName="twitter" required />
+                        </mat-form-field>
+
+                    </mat-card-content>
+
+                </mat-card>
+
+            </div>
+            <div class="d-flex justify-content-center p-1">
+                <button type="submit" mat-raised-button color="primary">Submit</button>
+            </div>
+            </form>
+
+        </div>
+    </div>

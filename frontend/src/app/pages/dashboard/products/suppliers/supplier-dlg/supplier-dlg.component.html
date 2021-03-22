@@ -1,0 +1,16 @@
+<div class="p-3">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="h3">Remove Product Supplier</div>
+    <button mat-mini-fab [matDialogClose]="false">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="w-100 md alert alert-danger p-2">Do you really want to remove this item ?</div>
+
+  <div class="d-flex justify-content-end">
+    <button mat-raised-button (click)="handleItem()" class="btn-custom bg-custom-1">
+      Remove Supplier
+    </button>
+  </div>
+</div>

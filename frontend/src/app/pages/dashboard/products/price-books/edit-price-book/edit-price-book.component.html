@@ -1,0 +1,58 @@
+<div class="p-3">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="h3" *ngIf="data.action === 'edit'">Edit Price Book</div>
+        <div class="h3" *ngIf="data.action === 'add'">Add New Price Book</div>
+        <button mat-mini-fab [matDialogClose]="false">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <form [formGroup]="bookForm" (ngSubmit)="doAction()">
+        <mat-form-field class="w-100">
+            <mat-label>Name</mat-label>
+            <input type="text" matInput formControlName="name" placeholder="Price book name..." required/>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+            <mat-label>Customer group</mat-label>
+            <mat-select formControlName="customerGroup" required>
+                <mat-option *ngFor="let cg of customerGroups" [value]="cg.name">
+                  {{cg.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+            <mat-label>Outlet</mat-label>
+            <mat-select formControlName="outlet" required>
+                <mat-option *ngFor="let outlet of outlets" [value]="outlet.name">
+                  {{outlet.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+            <mat-label>Valid From</mat-label>
+            <input matInput [ngxMatDatetimePicker]="pickerFrom" placeholder="Valid From" formControlName="validFrom" />
+            <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #pickerFrom >
+            </ngx-mat-datetime-picker>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+            <mat-label>Valid To</mat-label>
+            <input matInput [ngxMatDatetimePicker]="pickerTo" placeholder="Valid From" formControlName="validTo" />
+            <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #pickerTo >
+            </ngx-mat-datetime-picker>
+        </mat-form-field>
+        <mat-form-field  class="w-100">
+            <mat-label>Price Book File</mat-label>
+            <ngx-mat-file-input formControlName="bookFile" placeholder="Choose price book file..." [accept]="'*.csv'"></ngx-mat-file-input>
+            <mat-icon matSuffix>folder</mat-icon>
+        </mat-form-field>
+        <p>You can upload your price book using a CSV.</p>
+        <p>Download a <a href="/template/downlad">template</a> file to get started.</p>
+        <input type="hidden" formControlName="createdAt" />
+        <div class="d-flex justify-content-end align-items-right p-1">
+                <button mat-raised-button class="bg-custom-1 ml-1 mt-3 text-white"
+                    color="primary">Save</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,544 @@
+<div class="p-4">
+  <div class="row">
+    <form [formGroup]="productForm" (ngSubmit)="submit()" class="w-100">
+      <div class="h3 mb-3 container d-flex align-items-center">
+        <button mat-icon-button type="button" (click)="goBack()">
+          <mat-icon>keyboard_backspace</mat-icon>
+        </button>
+        {{toUppercase(action)}} Product
+      </div>
+
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center  p-4 bg-grey"
+             [ngClass]="{'custom-sticky-nav' : sticky}">
+          <div>Add, view and edit your products all in one place. <a>Need help ?</a></div>
+          <div>
+            <button mat-raised-button type="button" (click)="goBack()" class="text-white px-3 bg-custom-1">Cancel
+            </button>
+            <button mat-raised-button type="submit" class="text-white px-3 ml-3 bg-custom-2">Save</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container pt-5">
+        <div class="h5 font-weight-bold mb-3">General</div>
+        <div class="row">
+
+          <div class="col-md-3">
+            Change general information for this product.
+          </div>
+          <div class="col-md-9">
+            <div class="d-flex">
+              <div class="w-50 p-2">
+                <label>Name</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput formControlName="name" placeholder="Type product name">
+                  <mat-error *ngIf="productForm.get('name').hasError('required')">
+                    Required field
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="w-50 p-2">
+                <label>Handle</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput formControlName="handle" placeholder="Type product handle">
+                  <mat-error *ngIf="productForm.get('handle').hasError('required')">
+                    Required field
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+
+            <div class="mb-3">
+              <label>Description</label>
+              <angular-editor formControlName="description"></angular-editor>
+            </div>
+
+            <div>
+              <label>Tags <small class="ml-2">Describe the product using relevant keywords for easy
+                filtering</small></label>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-chip-list #tagList aria-label="Fruit selection">
+                  <mat-chip *ngFor="let tag of tags" (removed)="removeTag(tag)">
+                    {{tag}}
+                    <mat-icon matChipRemove>delete_outline</mat-icon>
+                  </mat-chip>
+                  <input placeholder="Type tag name"
+                         [matChipInputFor]="tagList"
+                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                         (matChipInputTokenEnd)="addTag($event)">
+                </mat-chip-list>
+              </mat-form-field>
+            </div>
+
+            <div class="d-flex mb-3">
+              <div class="w-50 p-2">
+                <label>
+                  Product Type
+                  <small>
+                    Categorise your products with types.
+                  </small>
+                </label>
+                <ng-select class="slt-custom" (change)="addItem('Type')" [multiple]="false"
+                           [(ngModel)]="selectedType" [ngModelOptions]="{standalone: true}" placeholder="Choose a type">
+                  <ng-option *ngFor="let type of types" [value]="type">{{type}}</ng-option>
+                  <ng-option value="newType">Add new type</ng-option>
+                </ng-select>
+              </div>
+
+              <div class="w-50 p-2">
+                <label>Brand</label>
+                <ng-select class="slt-custom" (change)="addItem('Brand')" [multiple]="false"
+                           [(ngModel)]="selectedBrand" [ngModelOptions]="{standalone: true}"
+                           placeholder="Choose a brand">
+                  <ng-option *ngFor="let brand of brands" [value]="brand">{{brand}}</ng-option>
+                  <ng-option value="newBrand">Add new brand</ng-option>
+                </ng-select>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <mat-slide-toggle [(ngModel)]="enabled" [ngModelOptions]="{standalone: true}">Sell on Point -of -Sale</mat-slide-toggle>
+              <div>
+                <small>Make this product active for sale in-store</small>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label>Upload Images</label>
+              <div class="mb-2">
+                <small>Please upload image of product</small>
+              </div>
+              <input hidden type="file" #Image (change)="uploadFile($event.target.files, -1)" accept=".png, .jpeg"
+                     multiple="multiple">
+              <button mat-stroked-button type="button" (click)="Image.click()" class="btn-custom bg-custom-2">
+                <mat-icon matPrefix>cloud_upload</mat-icon>
+                Upload Image
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="row pt-5 mb-3 border-top">
+          <div class="col-md-3">
+            <div class="h5 font-weight-bold mb-3">Supply && Inventory</div>
+            <p>
+              The type of product we choose determines how we manage inventory and reporting.
+            </p>
+          </div>
+
+          <div class="col-md-9">
+
+            <div class="mb-3">
+              <mat-slide-toggle color="primary" [checked]="variantInv" [(ngModel)]="variantInv"
+                                [ngModelOptions]="{standalone: true}">Product with Variants
+              </mat-slide-toggle>
+              <div>
+                <small>
+                  These are products that have different versions, like size or color.
+                  Turn this on to specify up to three attributes (like color),
+                  and unlimited values for each attribute (like green, blue, black).
+                </small>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <mat-slide-toggle color="primary" [checked]="trackingInv" [(ngModel)]="trackingInv"
+                                [ngModelOptions]="{standalone: true}">Tracking Inventory
+              </mat-slide-toggle>
+              <div>
+                <small>
+                  Leave this on if you want to keep track of your inventory quantities.
+                  You'll be able to report on cost of goods sold, product performance,
+                  and projected weeks cover, as well as manage your store using inventory orders,
+                  transfers and rolling inventory counts.
+                </small>
+              </div>
+            </div>
+
+            <div class="d-flex mb-2">
+              <div class="w-50 p-2" *ngIf="!variantInv">
+                <label>Stock Keeping Unit</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput [(ngModel)]="sku" [ngModelOptions]="{standalone: true}" placeholder="Type SKU">
+                </mat-form-field>
+              </div>
+
+              <div class="w-50 p-2">
+                <label>Supplier</label>
+                <ng-select class="slt-custom" (change)="addItem('Supplier')" [multiple]="false"
+                           [(ngModel)]="selectedSupplier" [ngModelOptions]="{standalone: true}"
+                           placeholder="Choose a supplier">
+                  <ng-option *ngFor="let supplier of suppliers" [value]="supplier">{{supplier}}</ng-option>
+                  <ng-option value="newSupplier">Add new supplier</ng-option>
+                </ng-select>
+                <ng-container *ngIf="submitted && !selectedSupplier">
+                  <div class="invalid-feedback d-block">
+                    Required field
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+
+            <div class="d-flex">
+              <div class="w-50 p-2">
+                <label>Supplier Code</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput type="text" formControlName="supplier_code" placeholder="Type supplier code here">
+                  <mat-error *ngIf="productForm.get('supplier_code').hasError('required')">
+                    Required field
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="w-50 p-2">
+                <label>Supply Price</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-icon matPrefix>attach_money</mat-icon>
+                  <input matInput type="number" [(ngModel)]="supplyPrice" (change)="setPrice('supply')"
+                         [ngModelOptions]="{standalone: true}" placeholder="Type supply price here">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div *ngIf="trackingInv && !variantInv" class="d-flex justify-content-between mb-2">
+              <div class="flex-grow-1 p-2">
+                <label>Current Inventory</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput type="number" [(ngModel)]="inventory " [ngModelOptions]="{standalone: true}"
+                          placeholder="Type current inventory here">
+                </mat-form-field>
+              </div>
+
+              <div class="flex-grow-1 p-2">
+                <label>Reorder Point</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput type="number" [(ngModel)]="reorderPoint" [ngModelOptions]="{standalone: true}"
+                          placeholder="Type reorder point here">
+                </mat-form-field>
+              </div>
+
+              <div class="flex-grow-1 p-2">
+                <label>Reorder Amount</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput type="number" [(ngModel)]="reorderAmount " [ngModelOptions]="{standalone: true}"
+                           placeholder="Type reorder amount here">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row pt-5 mb-3 border-top">
+          <div class="col-md-3">
+            <div class="h5 font-weight-bold mb-3">Tax</div>
+          </div>
+
+          <div class="col-md-9">
+            <div class="d-flex  mb-3">
+              <div class="w-25 font-weight-bold">Outlet</div>
+              <div class="w-75 font-weight-bold">Tax</div>
+            </div>
+            <div class="d-flex align-items-center border-top pt-3">
+              <div class="w-25">Main outlet</div>
+              <div class="w-75">
+                <ng-select class="slt-custom"  [multiple]="false"  [(ngModel)]="tax"
+                           [ngModelOptions]="{standalone: true}" placeholder="Choose a tax">
+                  <ng-option *ngFor="let tax of taxes" [value]="tax">{{tax}}</ng-option>
+                </ng-select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row mb-3 border-top pt-5">
+          <div class="col-md-3">
+            <div class="h5 font-weight-bold mb-3">Price</div>
+          </div>
+
+          <div class="col-md-9">
+            <div class="d-flex justify-content-between mb-2">
+              <p>Supply Price</p>
+              <p *ngIf="supplyPrice">$ {{supplyPrice | number : '.2-2'}}</p>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mb-2 border-bottom">
+              <div>Markup</div>
+              <mat-form-field appearance="outline" class="w-50">
+                <input matInput type="number" [(ngModel)]="markup" (change)="setPrice('markup')"
+                       [ngModelOptions]="{standalone: true}" placeholder="0.00 %">
+              </mat-form-field>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <div>
+                <div>Retail Price</div>
+                <div>
+                  <small>Excluding Tax</small>
+                </div>
+              </div>
+              <mat-form-field appearance="outline" class="w-50">
+                <input matInput type="number" [(ngModel)]="retailPrice" (change)="setPrice('retail')"
+                       [ngModelOptions]="{standalone: true}" >
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="variantInv" class="row mb-3 border-top pt-5">
+          <div class="col-md-3">
+            <div class="h5 font-weight-bold mb-3">Variants</div>
+            <p>
+              These are products that have different versions, like size or color.
+              Turn this on to specify up to three attributes (like color),
+              and unlimited values for each attribute (like green, blue, black).
+            </p>
+          </div>
+
+          <div class="col-md-9">
+            <div class="d-flex">
+              <div class="w-25">
+                <label>Attribute (e.g. Colour)</label>
+              </div>
+              <div class="w-75">
+                <label>
+                  Value(e.g. Red, Blue, Green)
+                </label>
+              </div>
+            </div>
+            <ng-container *ngFor="let variant of variants; let attrIndex = index">
+              <div class="d-flex align-items-center mb-2">
+                <div class="w-25 p-2">
+                  <ng-select class="slt-custom" (change)="addAttribute(attrIndex)" [multiple]="false"
+                             placeholder="Choose a attribute"
+                             [(ngModel)]="variant.attribute" [ngModelOptions]="{standalone: true}">
+                    <ng-option *ngFor="let attribute of attributes" [value]="attribute">{{attribute}}</ng-option>
+                    <ng-option value="newAttribute">Add new attribute</ng-option>
+                  </ng-select>
+                  <div *ngIf="submitted && !variant.attribute" class="invalid-feedback d-block mb-n2">Required field
+                  </div>
+                </div>
+                <div class="w-75 p-2 ">
+                  <div class="d-flex align-items-center">
+                    <mat-form-field appearance="outline" class="custom-form-field w-100">
+                      <mat-chip-list #attrValueList aria-label="attribute value selection">
+                        <mat-chip *ngFor="let value of variant.value" (removed)="removeAttrValue(value, attrIndex)">
+                          {{value}}
+                          <mat-icon matChipRemove>delete_outline</mat-icon>
+                        </mat-chip>
+                        <input placeholder="Enter a  attribute value"
+                               [matChipInputFor]="attrValueList"
+                               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                               (matChipInputTokenEnd)="addAttrValue($event, attrIndex)">
+                      </mat-chip-list>
+                    </mat-form-field>
+                    <button mat-icon-button type="button" (click)="removeVariant(attrIndex)" *ngIf="attrIndex !== 0">
+                      <mat-icon class="ml-3">
+                        cancel
+                      </mat-icon>
+                    </button>
+                  </div>
+                  <div *ngIf="submitted && !variant.value.length" class="invalid-feedback d-block mb-n2">Please add one
+                    value at least
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+            <div class="d-flex mb-3">
+              <div class="w-25">
+                <button mat-button type="button" (click)="newVariant()" *ngIf="variants.length < 3" color="primary"
+                        class="mt-2">
+                  <mat-icon matPrefix>add</mat-icon>
+                  Add new variant
+                </button>
+              </div>
+              <div class="w-75">
+<!--                <button mat-button type="button" (click)="editAttrValue()" color="primary" class="mt-2">-->
+<!--                  <mat-icon matPrefix>edit</mat-icon>-->
+<!--                  Edit values name-->
+<!--                </button>-->
+              </div>
+            </div>
+            <div class="mb-3 font-weight-light">
+              This product has {{variantProducts.length}} variant.
+            </div>
+
+
+            <div class="w-100">
+              <table class="table" >
+                <thead>
+                  <tr>
+                    <th  >Variant Name</th>
+                    <th >SKU</th>
+                    <th >Supplier Code</th>
+                    <th >Supply Price</th>
+                    <th >Retail Price</th>
+                    <th >Enabled</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container *ngFor="let product of variantProducts; let productIndex = index;">
+                    <tr class="show-table-row">
+                      <td >
+                        <div class="d-flex align-items-center justify-content-between">
+                          <mat-icon  data-toggle="collapse" [attr.data-target]="'#target' + productIndex" aria-expanded="false" [attr.aria-controls]="'target' + productIndex">
+                            add
+                          </mat-icon>
+                          <div class="ml-3">{{product.name}}</div>
+                        </div>
+                      </td>
+                      <td>
+                        <mat-form-field appearance="outline" class="w-p-120" [ngClass]="{'is-invalid': submitted && !product.sku}">
+                          <input matInput [(ngModel)]="product.sku" [ngModelOptions]="{standalone: true}" placeholder="Type SKU">
+                        </mat-form-field>
+                      </td>
+                      <td >
+                        <mat-form-field appearance="outline" class="w-p-120">
+                          <input matInput [(ngModel)]="product.supplier_code" [ngModelOptions]="{standalone: true}"  placeholder="Type code">
+                        </mat-form-field>
+                      </td>
+
+                      <td >
+                        <mat-form-field appearance="outline" class="w-p-120">
+                          <mat-icon matPrefix>attach_money</mat-icon>
+                          <input matInput type="number" [(ngModel)]="product.supply_price" [ngModelOptions]="{standalone: true}"
+                                  placeholder="Type supplier price">
+                        </mat-form-field>
+                      </td>
+
+                      <td >
+                        <mat-form-field appearance="outline" class="w-p-120">
+                          <mat-icon matPrefix>attach_money</mat-icon>
+                          <input matInput type="number" [(ngModel)]="product.retail_price" [ngModelOptions]="{standalone: true}"
+                                  placeholder="Type retail price">
+                        </mat-form-field>
+                      </td>
+
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <mat-slide-toggle [(ngModel)]="product.enabled" [ngModelOptions]="{standalone: true}" ></mat-slide-toggle>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="hide-table-padding">
+                      <td colspan="6">
+                        <div [attr.id]="'target' + productIndex" class="collapse in p-3">
+                          <mat-tab-group>
+                            <mat-tab label="Inventory" *ngIf="trackingInv && variantInv">
+                              <div>
+                                <table class="w-100 show-table-row" >
+                                  <tr class="mb-3">
+                                    <th>Outlet</th>
+                                    <th>Current Inventory</th>
+                                    <th>Reorder point</th>
+                                    <th>Reorder Amount</th>
+                                  </tr>
+                                  <tr >
+                                    <td >
+                                      <div class="pt-3">
+                                        Main Outlet
+                                      </div>
+                                    </td>
+                                    <td>
+                                      <mat-form-field appearance="outline" class="w-p-120 pt-1">
+                                        <input matInput type="number" [(ngModel)]="product.inventory " [ngModelOptions]="{standalone: true}"
+                                               placeholder="Type inventory">
+                                      </mat-form-field>
+                                    </td>
+                                    <td>
+                                      <mat-form-field appearance="outline" class="w-p-120 pt-1">
+                                        <input matInput type="number" [(ngModel)]="product.reorder_point" [ngModelOptions]="{standalone: true}"
+                                               (ngModelChange)="product.reorderPoint = $event" placeholder="Type reorder point">
+                                      </mat-form-field>
+                                    </td>
+                                    <td>
+                                      <mat-form-field appearance="outline" class="w-p-120 pt-1">
+                                        <input matInput type="number" [(ngModel)]="product.reorder_amount" [ngModelOptions]="{standalone: true}"
+                                                placeholder="Type reorder amount">
+                                      </mat-form-field>
+                                    </td>
+
+                                  </tr>
+                                </table>
+                              </div>
+                            </mat-tab>
+
+                            <mat-tab label="Tax">
+                              <div>
+                                <div class="d-flex align-items-center border-bottom p-3 mb-3">
+                                  <div class="w-50 font-weight-bold">Outlet</div>
+                                  <div class="w-50 font-weight-bold">Tax</div>
+                                </div>
+                              </div>
+                              <div class="d-flex justify-content-between align-items-center">
+                                <div >Main Outlet</div>
+                                <div class="w-50">
+                                  <ng-select class="slt-custom"  [multiple]="false"
+                                             [(ngModel)]="product.tax" [ngModelOptions]="{standalone: true}" placeholder="Choose a tax">
+                                    <ng-option *ngFor="let tax of taxes" [value]="tax">{{tax}}</ng-option>
+                                  </ng-select>
+                                </div>
+                              </div>
+                            </mat-tab>
+
+                            <mat-tab label="Price">
+                              <div class="pt-4">
+                                <div class="d-flex justify-content-between mb-3">
+                                  <div>Supply Price</div>
+                                  <div>{{product.supplyPrice | number : '.2-2'}}</div>
+                                </div>
+
+                                <div class="d-flex justify-content-between  border-bottom mb-3">
+                                  <div>Markup</div>
+                                  <div class="w-50">
+                                    <mat-form-field appearance="outline" class="w-100">
+                                      <input matInput type="number" [(ngModel)]="product.markup"
+                                             [ngModelOptions]="{standalone: true}" placeholder="0.00 % ">
+                                    </mat-form-field>
+                                  </div>
+                                </div>
+
+                                <div class="d-flex justify-content-between  mb-3">
+                                  <div>
+                                    <div>Retail Price</div>
+                                    <div>
+                                      <small>Excluding Tax</small>
+                                    </div>
+                                  </div>
+                                  <div class="w-50">
+                                    <mat-form-field appearance="outline" class="w-100">
+                                      <input matInput [(ngModel)]="product.retail_price"
+                                             [ngModelOptions]="{standalone: true}" >
+                                    </mat-form-field>
+                                  </div>
+                                </div>
+                              </div>
+                            </mat-tab>
+
+                            <mat-tab label="Image">
+                              <div class="pt-4">
+                                <input hidden type="file" #variantImage (change)="uploadFile($event.target.files, productIndex)" accept=".png, .jpeg"
+                                       multiple="multiple">
+                                <button mat-stroked-button type="button" (click)="variantImage.click()" class="btn-custom bg-custom-2">
+                                  <mat-icon matPrefix>cloud_upload</mat-icon>
+                                  Upload Image
+                                </button>
+                              </div>
+                            </mat-tab>
+                          </mat-tab-group>
+                        </div>
+                      </td>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>

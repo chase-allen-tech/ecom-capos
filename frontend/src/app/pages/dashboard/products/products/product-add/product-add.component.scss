@@ -1,0 +1,19 @@
+::ng-deep {
+  .custom-form-field .mat-form-field-wrapper {
+    padding-bottom: 0;
+  }
+  .mat-chip.mat-standard-chip {
+    background: #6692b0;
+  }
+}
+
+table {
+  .show-table-row {
+    td > div:first-child {
+      height: 55px;
+    }
+  }
+  tr.hide-table-padding td {
+    padding: 0;
+  }
+}

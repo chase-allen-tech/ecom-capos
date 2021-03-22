@@ -1,0 +1,101 @@
+<div class="container p-4" *ngIf="order">
+  <div class="d-flex justify-content-between mt-5">
+    <div class="h3 mb-3 d-flex align-items-center">
+      <button mat-icon-button type="button" (click)="goBack()">
+        <mat-icon>keyboard_backspace</mat-icon>
+      </button>
+      {{utilFunc.toUppercase(order.type)}} Order Detail
+    </div>
+
+    <div>
+      <button mat-button (click)="mailOrder()" class="bg-custom-1 text">Email order</button>
+      <button mat-button (click)="edit()" class="bg-custom-2 text ml-3">Edit order</button>
+    </div>
+  </div>
+
+  <div class="row p-4">
+    <div class="col-md-6">
+      <div class="d-flex mb-3">
+        <div class="w-50 font-weight-bold">Order Number</div>
+        <div class="w-50">{{order.order_number}}</div>
+      </div>
+
+      <div class="d-flex mb-3">
+        <div class="w-50 font-weight-bold">Order Status</div>
+        <div class="w-50">{{status}}</div>
+      </div>
+
+      <div class="d-flex mb-3">
+        <div class="w-50 font-weight-bold">Supplier</div>
+        <div class="w-50">{{order.supplier}}</div>
+      </div>
+
+      <div class="d-flex mb-3">
+        <div class="w-50 font-weight-bold">Deliver to</div>
+        <div class="w-50">{{order.deliver_to}}</div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="d-flex mb-3">
+        <div class="w-50 font-weight-bold">Created</div>
+        <div class="w-50">{{order.created}}</div>
+      </div>
+
+      <div class="d-flex mb-3">
+        <div class="w-50 font-weight-bold">Created By</div>
+        <div class="w-50">{{order.created_by}}</div>
+      </div>
+
+      <div class="d-flex mb-3">
+        <div class="w-50 font-weight-bold">Deliver due</div>
+        <div class="w-50">{{order.deliver_date}}</div>
+      </div>
+
+      <div class="d-flex mb-3">
+        <div class="w-50 font-weight-bold">Supplier invoice</div>
+        <div class="w-50">{{order.invoice_number}}</div>
+      </div>
+
+      <div class="d-flex mb-3">
+        <div class="w-50 font-weight-bold">Note</div>
+        <div class="w-50">{{order.note}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <table class="table-striped w-100">
+      <thead>
+        <tr>
+          <th>Order</th>
+          <th>Product</th>
+          <th>SKU</th>
+          <th>Supplier Code</th>
+          <th>Stock</th>
+          <th>Ordered</th>
+          <th>Received</th>
+          <th>Supply Cost</th>
+          <th>Total Supply Cost</th>
+          <th>Retail Price</th>
+          <th>Total Retail Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products; let no = index">
+          <td>{{no + 1}}</td>
+          <td>{{product.name}}</td>
+          <td>{{product.sku}}</td>
+          <td>{{product.supplier_code}}</td>
+          <td>{{product.inventory}}</td>
+          <td>{{product.qty}}</td>
+          <td>{{product.received_qty}}</td>
+          <td>{{product.supply_price}}</td>
+          <td>{{product.qty * product.supply_price}}</td>
+          <td>{{getRetailPrice(product)}}</td>
+          <td>{{product.qty * getRetailPrice(product)}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

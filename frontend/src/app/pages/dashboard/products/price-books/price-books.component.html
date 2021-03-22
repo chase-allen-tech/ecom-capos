@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="capos-title-bar">
+        Price Books
+    </div>
+
+    <div class="capos-help-bar">
+        <p class="help-text">A list of all of your price books. <a href="/help/products/price-book">Need Help</a>?</p>
+        <div class="help-buttons">
+            <button mat-button (click)="addPriceBook()" class="bg-custom-2 text-white">Add Price Book</button>
+        </div>
+    </div>
+
+    <mat-card class="capos-card p-4">
+        <mat-card-content>
+            <div class="table-container">
+                <div class="table-wrapper">
+                    <table mat-table [dataSource]="pageData" class="fill">
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef>Price Book Name</th>
+                            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="customerGroup">
+                            <th mat-header-cell *matHeaderCellDef>Customer Group</th>
+                            <td mat-cell *matCellDef="let element"> {{element.customerGroup}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="outlet">
+                            <th mat-header-cell *matHeaderCellDef>Outlet</th>
+                            <td mat-cell *matCellDef="let element"> {{element.outlet}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="validFrom">
+                            <th mat-header-cell *matHeaderCellDef>Valid From</th>
+                            <td mat-cell *matCellDef="let element"> {{element.validFrom}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="validTo">
+                            <th mat-header-cell *matHeaderCellDef>Valid To</th>
+                            <td mat-cell *matCellDef="let element"> {{element.validTo}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="createdAt">
+                            <th mat-header-cell *matHeaderCellDef>Created At</th>
+                            <td mat-cell *matCellDef="let element"> {{element.createdAt}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="action">
+                            <th mat-header-cell *matHeaderCellDef>Action</th>
+                            <td mat-cell *matCellDef="let element">
+                                <div class="d-flex">
+                                    <button mat-icon-button (click)="deletePriceBook(element)" mat-mini-fab
+                                        color="warn">
+                                        <mat-icon>remove</mat-icon>
+                                    </button>
+                                    <button mat-icon-button (click)="editPriceBook(element)" mat-mini-fab
+                                        color="primary">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                </div>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                </div>
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            </div>
+
+        </mat-card-content>
+    </mat-card>
+</div>

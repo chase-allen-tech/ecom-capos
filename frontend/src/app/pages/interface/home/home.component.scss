@@ -1,0 +1,38 @@
+.text-light-blue {
+  color: #5fcef9;
+}
+.text-black {
+  color: #000;
+}
+
+.btn-group {
+  margin-top: 50px;
+}
+.how, .checkout {
+  margin-top: 80px;
+}
+
+.offset-20 {
+  padding-left: 25vw;
+  padding-right: 25vw;
+}
+@media(max-width:1360px) {
+  .welcome {
+    .xxl {
+      font-size: 36px;
+    }
+    .xl {
+      font-size: 24px;
+    }
+    img {
+      width: 200px;
+    }
+  }
+
+}
+
+button {
+  border-radius: 20px;
+  background: #5fcef9;
+  padding: 10px;
+}

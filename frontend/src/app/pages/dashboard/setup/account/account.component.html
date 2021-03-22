@@ -1,0 +1,139 @@
+<div class="container">
+	<div class="capos-title-bar">
+		Billing and Subscriptions
+	</div>
+
+	<div fxLayout="row" 
+      fxLayout.gt-lg="row"  
+      fxLayout.gt-md="row"  
+      fxLayout.gt-sm="row"  
+      fxLayout.gt-xs="column"
+	  fxLayout.xs="column" fxLayout="center" class="mb-4">
+		<mat-card fxFlex="25" class="capos-plan-card free selected">
+			<mat-card-header class="justify-content-center">
+					<mat-card-title>
+							<h2>Current Plan</h2>
+					</mat-card-title>
+			</mat-card-header>
+			<mat-card-content class="text-center">
+					<div class="bg-white price">
+							<h2>Free</h2>
+					</div>
+					<div class="bg-gray">
+						<p>Single Outlet</p>
+						<p>1 Register only</p>
+					</div>
+					<div class="bg-gray">
+						<p>1 User only</p>
+						<p>upto 10 products only</p>
+						<p>upto 1000 customers only</p>
+					</div>
+					<div class="bg-gray">
+						<p>Community support</p>
+					</div>
+			</mat-card-content>
+			<mat-card-actions  class="d-flex justify-content-center">
+				<button mat-raised-button color="primary" (click)="selectPlan('free')">Select Plan</button>
+			</mat-card-actions>
+			</mat-card>
+	<mat-card fxFlex="25" class="capos-plan-card starter">
+		<mat-card-header class="justify-content-center">
+				<mat-card-title>
+						<h2>Stater</h2>
+				</mat-card-title>
+		</mat-card-header>
+		<mat-card-content class="text-center">
+				<div class="bg-white price">
+						<h2><span>$</span>69</h2>
+						<span>per month</span>
+				</div>
+				<div class="bg-gray">
+					<p>Single Outlet</p>
+					<p>1 Register only</p>
+				</div>
+				<div class="bg-gray">
+					<p>up to 3 users only</p>
+					<p>Unlimited products & customers</p>
+				</div>
+				<div class="bg-gray">
+					<p>Email & Chat Support</p>
+				</div>
+		</mat-card-content>
+		<mat-card-actions  class="d-flex justify-content-center">
+			<button mat-raised-button color="primary" (click)="selectPlan('starter')">Select Plan</button>
+		</mat-card-actions>
+	</mat-card>
+<mat-card fxFlex="25" class="capos-plan-card advanced">
+	<mat-card-header class="justify-content-center">
+			<mat-card-title>
+					<h2>Advanced</h2>
+			</mat-card-title>
+	</mat-card-header>
+	<mat-card-content class="text-center">
+			<div class="bg-white price">
+				<h2><span>$</span>79</h2>
+				<span>per month</span>
+			</div>
+			<div class="bg-gray">
+				<p>Single Outlet</p>
+				<p>Start with 1 register</p>
+				<p>(add more as you grow)</p>
+			</div>
+			<div class="bg-gray">
+				<p>Unlimited products, users & customers</p>
+			</div>
+			<div class="bg-gray">
+				<p>Gift cards</p>
+				<p>loyalty</p>
+				<p>Ecommerece</p>
+				<p>Advance Reporting</p>
+				<p>Advanced User Permissions</p>
+			</div>
+			<div class="bg-gray">
+				<p>Email & Chat Support</p>
+			</div>
+	</mat-card-content>
+	<mat-card-actions  class="d-flex justify-content-center">
+		<button mat-raised-button color="primary" (click)="selectPlan('advanced')">Select Plan</button>
+	</mat-card-actions>
+</mat-card>
+<mat-card fxFlex="25" class="capos-plan-card multi-outlet">
+	<mat-card-header class="justify-content-center">
+			<mat-card-title>
+					<h2>Multi-Outlet</h2>
+			</mat-card-title>
+	</mat-card-header>
+	<mat-card-content class="text-center">
+			<div class="bg-white price">
+				<h2><span>$</span>199</h2>
+				<span>per month</span>
+			</div>
+			<div class="bg-gray">
+				<p>Single Outlet</p>
+				<p>Start with 2 register</p>
+				<p>(add more as you grow)</p>
+			</div>
+			<div class="bg-gray">
+				<p>Unlimited products, users & customers</p>
+			</div>
+			<div class="bg-gray">
+				<p>Multi-outlet inventory</p>
+				<p>Central customer database</p>
+				<p>HQ and outlet reporting</p>
+				<p>Timezone support</p>
+				<p>Consolidated billing and admin</p>
+			</div>
+			<div class="bg-gray">
+				<p>Priority Phone Support</p>
+			</div>
+	</mat-card-content>
+	<mat-card-actions  class="d-flex justify-content-center">
+		<button mat-raised-button color="primary" (click)="selectPlan('multi-outlet')">Select Plan</button>
+	</mat-card-actions>
+</mat-card>
+
+	</div>
+	<div class="d-flex justify-content-center">
+		<button mat-raised-button color="accent" (click)="register()" class="p-2">Register</button>
+	</div>
+</div>

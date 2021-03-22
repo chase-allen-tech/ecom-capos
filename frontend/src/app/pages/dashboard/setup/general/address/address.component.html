@@ -1,0 +1,89 @@
+<div class="container p-4">
+    <form [formGroup]="addressForm" (ngSubmit)="submit()" fxLayout="column" class="bg-white p-4">
+    <div fxLayout="row" fxLayout.gt-lg="row" fxLayout.gt-md="row" fxLayout.gt-sm="row"
+        fxLayout.gt-xs="column">
+        <div fxFlex="50%" class="p-1">
+            <mat-card class="capos-card">
+                <mat-card-header>
+                    <mat-card-title>
+                        Physical Address
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-form-field class="w-100">
+                        <mat-label>Street</mat-label>
+                        <input type="text" matInput formControlName="street1" placeholder="" required />
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>City</mat-label>
+                        <input type="text" matInput formControlName="city1" placeholder="" required />
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>Suburb</mat-label>
+                        <input type="text" matInput formControlName="suburb1" placeholder="" required />
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>Postcode</mat-label>
+                        <input type="text" matInput formControlName="postcode1" placeholder="" required />
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>State</mat-label>
+                        <input type="text" matInput formControlName="state1" placeholder="" required />
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>Country</mat-label>
+                        <mat-select formControlName="country1" required>
+                            <mat-option *ngFor="let country of countries" [value]="country.code">
+                              {{country.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div fxFlex="50%" class="p-1">
+            <mat-card class="capos-card">
+                <mat-card-header>
+                    <mat-card-title>
+                        Postal Address
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-form-field class="w-100">
+                        <mat-label>Street</mat-label>
+                        <input type="text" matInput formControlName="street2" placeholder="" required />
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>City</mat-label>
+                        <input type="text" matInput formControlName="city2" placeholder="" required />
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>Suburb</mat-label>
+                        <input type="text" matInput formControlName="suburb2" placeholder="" required />
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>Postcode</mat-label>
+                        <input type="text" matInput formControlName="postcode2" placeholder="" required />
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>State</mat-label>
+                        <input type="text" matInput formControlName="state2" placeholder="" required />
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>Country</mat-label>
+                        <mat-select formControlName="country2" required>
+                            <mat-option *ngFor="let country of countries" [value]="country.code">
+                              {{country.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center p-1">
+        <button type="submit" mat-raised-button color="primary" class="mr-1">Submit</button>
+        <button type="button" mat-raised-button color="default" class="ml-1" (click)="cancel()">Cancel</button>
+    </div>
+</form>
+</div>

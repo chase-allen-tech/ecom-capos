@@ -1,0 +1,25 @@
+<div class="p-3">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="h3" *ngIf="data.action === 'edit'">Edit Sales Tax</div>
+        <div class="h3" *ngIf="data.action === 'add'">Add New Sales Tax</div>
+        <button mat-mini-fab [matDialogClose]="false">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <form [formGroup]="taxForm" (ngSubmit)="doAction()">
+        <mat-form-field class="w-100">
+            <mat-label>Tax Name</mat-label>
+            <input type="text" matInput formControlName="name" placeholder="Tax Name..." required/>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+            <mat-label>Tax Rate(%)</mat-label>
+            <input type="number" matInput formControlName="rate" placeholder="0.00%" required/>
+        </mat-form-field>
+
+        <div class="d-flex justify-content-end align-items-right p-1">
+                <button mat-raised-button class="bg-custom-1 ml-1 mt-3 text-white"
+                    color="primary">Save</button>
+        </div>
+    </form>
+</div>

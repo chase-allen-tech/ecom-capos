@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="capos-title-bar">
+        Register Closues
+    </div>
+	<div class="capos-help-bar">
+		<p class="help-text">Find all sales for a customer.<a href="/help/register-closues">Need help</a>?</p>
+	</div>
+	<mat-card class="capos-card p-4">
+		<mat-card-content>
+			<div class="table-container">
+				<div class="table-wrapper">
+					<table mat-table [dataSource]="pageData" class="fill">
+						<ng-container matColumnDef="register">
+								<th mat-header-cell *matHeaderCellDef>Register</th>
+								<td mat-cell *matCellDef="let element"> {{element.register}} </td>
+						</ng-container>
+						<ng-container matColumnDef="timeOpened">
+								<th mat-header-cell *matHeaderCellDef>Time Opened</th>
+								<td mat-cell *matCellDef="let element"> {{element.timeOpened}} </td>
+						</ng-container>
+						<ng-container matColumnDef="timeClosed">
+								<th mat-header-cell *matHeaderCellDef>Time Closed</th>
+								<td mat-cell *matCellDef="let element"> {{element.timeClosed}} </td>
+						</ng-container>
+						<ng-container matColumnDef="storeCredit">
+								<th mat-header-cell *matHeaderCellDef>Store Credit</th>
+								<td mat-cell *matCellDef="let element"> {{element.storeCredit}} </td>
+						</ng-container>
+						<ng-container matColumnDef="cashConcealed">
+							<th mat-header-cell *matHeaderCellDef>Cash(Concealed Total)</th>
+							<td mat-cell *matCellDef="let element"> {{element.cashConcealed}} </td>
+						</ng-container>
+						<ng-container matColumnDef="cash">
+							<th mat-header-cell *matHeaderCellDef>Cash</th>
+							<td mat-cell *matCellDef="let element"> {{element.cash}} </td>
+						</ng-container>
+						<ng-container matColumnDef="creditCard">
+							<th mat-header-cell *matHeaderCellDef>Credit Card</th>
+							<td mat-cell *matCellDef="let element"> {{element.creditCard}} </td>
+						</ng-container>
+						<ng-container matColumnDef="total">
+							<th mat-header-cell *matHeaderCellDef>Total</th>
+							<td mat-cell *matCellDef="let element"> {{getTotal(element)}} </td>
+						</ng-container>
+		
+						<tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+						<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+				</table>
+				</div>
+				<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+			</div>
+
+		</mat-card-content>
+	</mat-card>
+
+</div>

@@ -1,0 +1,45 @@
+<form [formGroup]="mailForm" (ngSubmit)="sendMail()">
+  <div class="p-4">
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="h3 mb-3 mat-primary">Send Email</div>
+      <button mat-icon-button [matDialogClose]="false" color="primary">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <label>Mail from</label>
+    <mat-form-field class="w-100" appearance="outline">
+      <input matInput type="email" formControlName="email_from">
+      <mat-error *ngIf="mailForm.get('email_from').hasError('email')">
+        Invalid email
+      </mat-error>
+    </mat-form-field>
+
+    <label>Mail to</label>
+    <mat-form-field class="w-100" appearance="outline">
+      <input matInput type="email" formControlName="email_to">
+      <mat-error *ngIf="mailForm.get('email_to').hasError('email')">
+        Invalid email
+      </mat-error>
+      <mat-error *ngIf="mailForm.get('email_to').hasError('required')">
+        Required field
+      </mat-error>
+    </mat-form-field>
+
+    <label>Subject</label>
+    <mat-form-field class="w-100" appearance="outline">
+      <input matInput type="text" formControlName="subject">
+    </mat-form-field>
+
+    <label>Recipient name</label>
+    <mat-form-field class="w-100" appearance="outline">
+      <input matInput type="text" formControlName="recipient">
+      <mat-error *ngIf="mailForm.get('recipient').hasError('required')">Required filed</mat-error>
+    </mat-form-field>
+    <label>Message</label>
+    <mat-form-field class="w-100" appearance="outline">
+      <textarea matInput formControlName="message" placeholder="Type message here"></textarea>
+    </mat-form-field>
+    <button mat-raised-button color="primary" class="btn-custom float-right">Send Email</button>
+  </div>
+</form>

@@ -1,0 +1,32 @@
+<div class="p-3">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="h3">{{toUpperCase(data.action)}} Product Brand</div>
+
+    <button mat-mini-fab [matDialogClose]="false">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <ng-container *ngIf="data.action === 'delete'">
+    <div class="w-100 md alert alert-danger p-2">Do you really want to remove this item ?</div>
+  </ng-container>
+
+  <ng-container *ngIf="data.action !== 'delete'">
+    <label>Brand name</label>
+    <mat-form-field appearance="outline" class="w-100">
+      <input matInput placeholder="E.g. Nike " [(ngModel)]="data.value">
+    </mat-form-field>
+
+    <label>Description</label>
+    <mat-form-field appearance="outline" class="w-100">
+      <input matInput placeholder="This brand is famous ..." [(ngModel)]="data.description">
+    </mat-form-field>
+
+  </ng-container>
+
+  <div class="d-flex justify-content-end">
+    <button mat-stroked-button (click)="handleItem()"  [disabled]="!data.value && data.action !== 'delete'" class="bg-custom-1 text-white btn-custom">
+      {{toUpperCase(data.action)}} Brand
+    </button>
+  </div>
+</div>

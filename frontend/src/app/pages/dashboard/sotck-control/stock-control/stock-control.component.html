@@ -1,0 +1,168 @@
+<div class="container">
+  <div class="capos-title-bar">
+    Stock Control
+  </div>
+
+  <div class="capos-help-bar">
+    <p class="help-text">
+      View and manage your consignments.
+      <a routerLink="/help/product-csv-import">Need help ?</a>
+    </p>
+
+    <div class="help-buttons">
+      <button mat-button (click)="handleAction('order', 'Add')">Order Stock</button>
+      <button mat-button (click)="handleAction('receive', 'Add')">Receive Stock</button>
+      <button mat-button (click)="handleAction('return', 'Add')">Return Stock</button>
+    </div>
+  </div>
+
+  <div class="bg-white p-4 mb-4">
+    <form [formGroup]="searchForm" (ngSubmit)="searchStock()">
+      <div class="d-flex">
+        <div class="w-50 p-2">
+          <label>Name/Number/Product/Supplier invoice</label>
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-icon matPrefix>search</mat-icon>
+            <input matInput [(ngModel)]="searchVal" (keyup)="filterOrder()" [ngModelOptions]="{standalone: true}"
+              placeholder="Type to search orders ...">
+          </mat-form-field>
+        </div>
+
+        <div class="w-50 p-2">
+          <label>Order Type</label>
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-select formControlName="type">
+              <mat-option value="">All orders</mat-option>
+              <mat-option *ngFor="let type of orderTypes" [value]="type">{{utilFunc.toUppercase(type)}} orders
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="d-flex">
+        <div class="w-50 p-2">
+          <label>Outlet</label>
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-select formControlName="outlet">
+              <mat-option value="">All</mat-option>
+              <mat-option *ngFor="let outlet of outlets" [value]="outlet.toLowerCase()">{{outlet}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="w-50 p-2">
+          <label>Supplier</label>
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-select formControlName="supplier">
+              <mat-option value="">All</mat-option>
+              <mat-option *ngFor="let supplier of suppliers" [value]="supplier">{{supplier}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="d-flex" *ngIf="!lessFilter">
+        <div class="p-2 w-25">
+          <label>Date from</label>
+          <mat-form-field class="w-100 p-2" appearance="outline">
+            <input matInput [matDatepicker]="dateFrom" formControlName="date_from">
+            <mat-datepicker #dateFrom></mat-datepicker>
+            <mat-datepicker-toggle matPrefix [for]="dateFrom"></mat-datepicker-toggle>
+          </mat-form-field>
+        </div>
+
+        <div class="p-2 w-25">
+          <label>Date to</label>
+          <mat-form-field class="w-100 p-2" appearance="outline">
+            <input matInput [matDatepicker]="dateTo" formControlName="date_to">
+            <mat-datepicker #dateTo></mat-datepicker>
+            <mat-datepicker-toggle matPrefix [for]="dateTo"></mat-datepicker-toggle>
+          </mat-form-field>
+        </div>
+
+        <div class="p-2 w-25">
+          <label>Due date from</label>
+          <mat-form-field class="w-100 p-2" appearance="outline">
+            <input matInput [matDatepicker]="dueFrom" formControlName="due_from">
+            <mat-datepicker #dueFrom></mat-datepicker>
+            <mat-datepicker-toggle matPrefix [for]="dueFrom"></mat-datepicker-toggle>
+          </mat-form-field>
+        </div>
+
+        <div class="p-2 w-25">
+          <label>Due date to</label>
+          <mat-form-field class="w-100 p-2" appearance="outline">
+            <input matInput [matDatepicker]="dueTo" formControlName="due_to">
+            <mat-datepicker #dueTo></mat-datepicker>
+            <mat-datepicker-toggle matPrefix [for]="dueTo"></mat-datepicker-toggle>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between">
+        <button mat-button type="button" (click)="toggleSearch()">Less Filter Options</button>
+        <button mat-raised-button type="submit" class="bg-custom-1 text-white">Filter</button>
+      </div>
+    </form>
+  </div>
+
+  <mat-card class="capos-card p-4">
+    <mat-card-content>
+      <div class="table-container">
+        <div class="table-wrapper">
+          <!--Stock control tables-->
+          <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
+            <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+              <th mat-header-cell mat-sort-header *matHeaderCellDef class="h5"> {{utilFunc.toUppercase(column)}} </th>
+              <ng-container *ngIf="!this.specialCols.includes(column)">
+                <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+              </ng-container>
+              <ng-container *ngIf="column === 'number'">
+                <td mat-cell *matCellDef="let element">
+                  <div>
+                    <a class="cursor" (click)="openOrderDlg(element, 'Read')">{{element[column]}}</a>
+                  </div>
+                  <div *ngIf="element['type']">
+                    <small>Supplier: {{element['type']}}</small>
+                  </div>
+                </td>
+              </ng-container>
+              <ng-container *ngIf="column === 'from'">
+                <td mat-cell *matCellDef="let element">
+                  <div>
+                    {{element[column]}}
+                  </div>
+                  <div *ngIf="element['invoice_number']">
+                    <small>Invoice: {{element['invoice_number']}}</small>
+                  </div>
+                </td>
+              </ng-container>
+              <ng-container *ngIf="column === 'to'">
+                <td mat-cell *matCellDef="let element">
+                  <div>{{element[column]}} </div>
+                  <div *ngIf="element['deliver_date']"><small>Due: {{element['deliver_date']}}</small></div>
+                </td>
+              </ng-container>
+              <ng-container *ngIf="column === 'action'">
+                <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
+                  <div class="d-flex justify-content-between">
+                    <button mat-icon-button mat-mini-fab color="primary" (click)="openOrderDlg(element, 'Edit')"
+                      *ngIf="element.status !== 'received'">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+
+                    <button mat-icon-button (click)="removeOrder(element)" mat-mini-fab color="warn">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </div>
+                </td>
+              </ng-container>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"> </tr>
+          </table>
+        </div>
+        <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

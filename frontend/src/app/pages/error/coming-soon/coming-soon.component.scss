@@ -1,0 +1,15 @@
+.coming-soon-container{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: url('/assets/image/coming-soon.jpg');
+    background-size:cover;
+    background-position: center;
+
+    button{
+        width: 200px;
+        height: 60px;
+    }
+}

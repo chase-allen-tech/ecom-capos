@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="capos-title-bar">
+      Register Open
+    </div>
+  
+    <div class="capos-help-bar">
+      <div class="d-flex justify-content-between align-items-center">
+        <p>
+            Set an opening float to open the register and make a sale.
+          <a routerLink="/help/sell-open">Need help ?</a>
+        </p>
+      </div>
+    </div>
+
+    <mat-card class="capos-card width-sm">
+        <mat-card-content>
+            <mat-form-field class="w-100" >
+              <mat-label>Opening Float</mat-label>
+              <input matInput [(ngModel)]="float" placeholder="">
+            </mat-form-field>
+          
+            <mat-form-field class="w-100">
+                <mat-label>Notes (Optional):</mat-label>
+                <textarea matInput [(ngModel)]="note" placeholder="Input your note here..."></textarea>
+            </mat-form-field>
+            <p *ngIf="error">{{error}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="d-flex justify-content-center">
+          <button mat-button (click)="openRegister()" class="bg-custom-2 text-white">Open Register</button>
+        </div>
+        </mat-card-actions>
+      </mat-card>
+
+    
+  </div>
+  

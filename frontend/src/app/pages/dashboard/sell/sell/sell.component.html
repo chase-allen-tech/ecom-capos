@@ -1,0 +1,499 @@
+<div class="container p-4">
+  <div class="row" *ngIf="payStep === 1">
+    <div class="col-xl-7">
+      <div class="d-flex justify-content-center pt-4">
+        <ng-select class="slt-custom w-75 mb-3" [(ngModel)]="selectedProduct" [ngModelOptions]="{standalone: true}"
+                   (change)="addToCart()" placeholder="Start typing or scanning ...">
+          <ng-option *ngFor="let product of products"
+                     [value]="product">
+            <ng-container *ngIf="product.product_name">{{product.product_name + ' ' + product.name}}</ng-container>
+            <ng-container *ngIf="!product.product_name">{{product.name}}</ng-container>
+          </ng-option>
+        </ng-select>
+      </div>
+    </div>
+    <div class="col-xl-5 p-3">
+      <form [formGroup]="cartForm" (ngSubmit)="submit()">
+        <div class="d-flex justify-content-between mb-2">
+          <button mat-button type="button" class="p-2">
+            <mat-icon class="mr-2">share</mat-icon>
+            Retrieve sale
+          </button>
+
+          <button mat-button type="button" class="p-2">
+            <mat-icon class="mr-2">watch_later</mat-icon>
+            Park sale
+          </button>
+
+          <button mat-button type="button" [matMenuTriggerFor]="more_action" class="p-2">
+            <mat-icon class="mr-2">more_vert</mat-icon>
+            More Actions...
+          </button>
+          <mat-menu #more_action>
+            <button mat-menu-item>
+              Quote Sale
+            </button>
+            <button mat-menu-item>
+              Mark as Unfulfilled ...
+            </button>
+            <button mat-menu-item>
+              Discard Sale
+            </button>
+          </mat-menu>
+        </div>
+        <mat-card class="w-100 mb-2 vh-75 d-flex flex-column justify-content-between">
+          <div>
+            <ng-select class="slt-custom mb-3" [(ngModel)]="addedCustomer" [ngModelOptions]="{standalone: true}"
+                       placeholder="Search customer ...">
+              <ng-option *ngFor="let customer of customers" [value]="customer">
+                <div>{{customer.name}} ({{customer.email}})</div>
+              </ng-option>
+            </ng-select>
+            <mat-expansion-panel class="mb-3" *ngFor="let product of addedProducts; let productNo = index;">
+              <mat-expansion-panel-header>
+                <div class="w-100 d-flex justify-content-between align-items-center font-weight-bold pt-2">
+                  <div class="d-flex">
+                    <div>{{product.qty}}</div>
+                    <div class="ml-3">
+                      <div>{{product.product_name}}</div>
+                      <div><small>{{product.name}}</small></div>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <div>
+                      <div>{{round2Digits(product.qty * product.retail_price * (1 - product.discount_value / 100), -1)}}</div>
+                      <div class="text-decoration" *ngIf="product.discount_value">
+                        <small>{{round2Digits(product.qty * product.retail_price, -1)}}</small>
+                      </div>
+                    </div>
+                    <button mat-icon-button class="ml-3 mr-3" color="primary" (click)="removeProduct(productNo)">
+                      <mat-icon> delete</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </mat-expansion-panel-header>
+              <mat-panel-description>
+                <div>
+                  <div class="d-flex">
+                    <div class="p-2 w-p-120">
+                      <label>Quantity</label>
+                      <mat-form-field appearance="outline" class="w-100">
+                        <input matInput type="number" [(ngModel)]="product.qty" [ngModelOptions]="{standalone: true}">
+                      </mat-form-field>
+                    </div>
+
+                    <div class="p-2 w-p-120">
+                      <label>Price</label>
+                      <mat-form-field appearance="outline" class="w-100">
+                        <input matInput type="number" [(ngModel)]="product.retail_price"
+                               [ngModelOptions]="{standalone: true}"
+                               (keyup)="round2Digits(product.retail_price, productNo, 'retail_price')">
+                      </mat-form-field>
+                    </div>
+
+                    <div class="p-2 w-p-120">
+                      <label>Discount({{discountSymbol}})</label>
+                      <mat-form-field appearance="outline" class="w-100">
+                        <input matInput type="number" [(ngModel)]="product.discount_value"
+                               [ngModelOptions]="{standalone: true}"
+                               (keyup)="round2Digits( product.discount_value, productNo, 'retail_price')">
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div>
+                    <label>Notes</label>
+                    <mat-form-field appearance="outline" class="w-100">
+                      <input matInput placeholder="Type to add note ..."
+                             [(ngModel)]="product.note" [ngModelOptions]="{standalone: true}">
+                    </mat-form-field>
+                  </div>
+                </div>
+              </mat-panel-description>
+            </mat-expansion-panel>
+          </div>
+
+          <div>
+            <mat-divider class="mb-3 border-t-w-3"></mat-divider>
+            <div class="p-3 mb-3 md font-weight-light">
+              <div class="d-flex justify-content-between align-items-center mb-3 pb-3 border-bottom-1">
+                <div>
+                  ADD
+                </div>
+                <button mat-button type="button" class="text-primary md font-weight-light" (click)="openDlg('discount')">Discount
+                </button>
+                <button mat-button type="button" class="text-primary md font-weight-light" (click)="toggleNote()">Note</button>
+              </div>
+
+              <div class="font-weight-normal h5 border-bottom-1" *ngIf="showNote">
+                <label>Notes</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="Type to add note ..." formControlName="note">
+                </mat-form-field>
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center  mb-3 pb-3 border-bottom-1">
+                <div>Subtotal</div>
+                <div>${{getSubTotal()}}</div>
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center  mb-3 pb-3 border-bottom-1"
+                   *ngIf="discountValue && addedProducts.length">
+                <div>Discount</div>
+                <div>
+                  -$<ng-container *ngIf="discountSymbol === '%'">
+                    {{round2Digits(getSubTotal() * discountValue / 100, -2)}}
+                    ({{round2Digits(discountValue, -2)}} {{discountSymbol}})
+                  </ng-container>
+                  <ng-container *ngIf="discountSymbol === '$'">
+                    {{round2Digits(discountValue, -2)}}
+                  </ng-container>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-between mb-3">
+                <div>Tax</div>
+                <div>$0.00</div>
+              </div>
+            </div>
+            <mat-divider class="mb-3 border-t-w-3"></mat-divider>
+            <div class="p-3">
+              <button mat-button type="submit"  class="w-100 p-2 bg-custom-2">
+                <div class="d-flex justify-content-between ">
+                  <div class="md font-weight-bold">
+                    Pay
+                    <small class="ml-3">{{getItemCount()}} items</small>
+                  </div>
+                  <div class="md font-weight-bold">$ {{getTotal()}}</div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="payStep === 2">
+    <div class="col-xl-6">
+      <div class="d-flex align-items-center lg mb-4">
+        <button mat-button mat-icon-button type="button" (click)="goBack()" *ngIf="amountTotal > 0">
+          <mat-icon>keyboard_backspace</mat-icon>
+        </button>
+        Sale
+      </div>
+
+
+      <div id="sale">
+        <div class="d-none" >
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <b style="margin-bottom: 16px">{{user.store_name}}</b>
+            <div *ngIf="user.outlet">{{user.outlet}}</div>
+            <div>Served by: &nbsp;{{user.first_name}}</div>
+          </div>
+        </div>
+        <div  style="display: flex;
+              justify-content: space-between;
+              font-family: Lato;
+              font-size: 24px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 29px;
+              letter-spacing: 0em;
+              text-align: left;"
+              *ngFor="let product of addedProducts">
+          <div style="display: flex">
+            <div>{{product.qty}}</div>
+            <div style="margin-left: 24px">
+              <ng-container *ngIf="product.product_name">
+                <div>{{product.product_name}}</div>
+                <div>
+                  <small>{{product.name}}</small>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="!product.product_name">
+                {{product.name}}
+              </ng-container>
+              <div *ngIf="product.discount_value">
+                <small>Disc: {{product.discount_value}}</small>
+              </div>
+              <div *ngIf="product.note">
+                <small>Note: {{product.note}}</small>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div>{{round2Digits(product.qty * product.retail_price * (1 - product.discount_value / 100), -1)}}</div>
+            <div style="text-decoration: line-through" *ngIf="product.discount_value">
+              <small>{{round2Digits(product.qty * product.retail_price, -1)}}</small>
+            </div>
+          </div>
+        </div>
+
+        <div  style="
+                  border-top: 1px solid;
+                  margin-top: 16px;
+                  padding-bottom: 16px;
+                  padding-left: 48px;
+                  border-bottom: 1px solid;
+                  padding-top: 24px;
+                  font-family: Lato;
+                  font-size: 24px;
+                  font-style: normal;
+                  font-weight: 400;
+                  line-height: 29px;
+                  letter-spacing: 0em;
+                  text-align: left;
+                  ">
+          <div style="display: flex; justify-content: space-between">
+            <div>Sub-total</div>
+            <div>${{getSubTotal()}}</div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between">
+            <div>Additional Discount</div>
+            <div>
+              <ng-container *ngIf="discountSymbol === '%'">
+                ${{round2Digits(getSubTotal() * discountValue / 100, -2)}}
+              </ng-container>
+              <ng-container *ngIf="discountSymbol === '$'">
+                ${{round2Digits(discountValue, -2)}}
+              </ng-container>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between">
+            <div>Tax</div>
+            <div>$0.00</div>
+          </div>
+        </div>
+
+        <div style="
+              padding-top: 16px;
+              display: flex;
+              justify-content: space-between;
+              font-family: Lato;
+              font-size: 24px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 29px;
+              letter-spacing: 0em;
+              text-align: left;
+              margin-bottom: 16px;
+              padding-bottom: 16px;
+              border-bottom: 1px solid;
+            ">
+          <div style="font-weight: bold">
+            Sale Total <small>{{getItemCount()}} items</small>
+          </div>
+          <div>${{getTotal()}}</div>
+        </div>
+
+        <div style="padding-left: 48px" *ngIf="payments.length">
+          <div style="display: flex;
+               justify-content: space-between;
+               font-family: Lato;
+               font-size: 24px;
+               font-style: normal;
+               font-weight: 400;
+               line-height: 29px;
+               letter-spacing: 0em;
+               text-align: left;
+               margin-bottom: 16px;
+               padding-bottom: 16px;
+               border-bottom: 1px solid;"
+               *ngFor="let payment of payments">
+            <div>
+              <div>
+                {{payment.type === 'cash' ? util.toUppercase(payment.type) :
+                util.toUppercase(payment.type) + ' Card'}}
+              </div>
+              <div>
+                <small>{{util.handleDate(payment.created)}}</small>
+              </div>
+            </div>
+            <div>${{payment.amount}}</div>
+          </div>
+
+          <div style="display: flex;
+               justify-content: space-between;
+               margin-bottom: 16px;
+               padding-bottom: 16px;
+               border-bottom: 1px solid"
+               *ngIf="amountTotal < 0">
+            <div class="font-weight-bold">Change</div>
+            <div>{{util.abs(amountTotal)}}</div>
+          </div>
+
+          <div style="
+               display: flex;
+               justify-content: space-between;
+               font-family: Lato;
+               font-size: 24px;
+               font-style: normal;
+               font-weight: 400;
+               line-height: 29px;
+               letter-spacing: 0em;
+               text-align: left;
+               margin-bottom: 16px;
+               padding-bottom: 16px;
+               border-bottom: 1px solid;">
+            <div class="font-weight-bold">To Pay</div>
+            <div>$
+              <ng-container *ngIf="amountTotal > 0">
+                {{round2Digits(amountTotal, -2)}}
+              </ng-container>
+              <ng-container *ngIf="amountTotal <= 0">
+                0
+              </ng-container>
+            </div>
+          </div>
+        </div>
+
+        <div style="
+               display: flex;
+               justify-content: space-between;
+               font-family: Lato;
+               font-size: 24px;
+               font-style: normal;
+               font-weight: 400;
+               line-height: 29px;
+               letter-spacing: 0em;
+               text-align: left;
+               margin-bottom: 16px;
+               padding-bottom: 16px;
+               border-bottom: 1px solid;"
+               *ngIf="!payments.length">
+          <div class="font-weight-bold">
+            Total Savings
+          </div>
+          <div>${{getSavings()}}</div>
+        </div>
+      </div>
+
+      <div id="gift" class="d-none">
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <b style="margin-bottom: 16px">{{user.store_name}}</b>
+          <div *ngIf="user.outlet">{{user.outlet}}</div>
+          <div>Served by: &nbsp;{{user.first_name}}</div>
+        </div>
+        <ng-container *ngFor="let product of addedProducts">
+          <div style="display: flex">
+            <div>{{product.product_name}}</div>
+            <div style="margin-left: 8px" *ngIf="product.name"><small>{{product.name}}</small></div>
+          </div>
+          <p>{{product.qty}}</p>
+        </ng-container>
+      </div>
+    </div>
+    <div class="col-xl-6">
+      <ng-container *ngIf="amountTotal > 0">
+        <div class="d-flex justify-content-between mb-3">
+          <div class="lg">Amount to Pay</div>
+          <div>
+            <div>
+              <mat-form-field class="w-100" appearance="outline">
+                <input matInput [(ngModel)]="amountToPay" type="number" />
+              </mat-form-field>
+              <div class="alert alert-warning"  *ngIf="amountToPay < 0">
+                Amount to pay can not be less 0
+              </div>
+            </div>
+            <div>
+              <small>Edit to make a partial payment.</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex mb-3">
+          <div class="flex-grow-1 p-2">
+            <button mat-button class="w-100 bg-custom-2 text-white md btn-custom" (click)="pay('cash', '')">
+              Cash
+            </button>
+          </div>
+
+          <div class="flex-grow-1 p-2">
+            <button mat-button class="w-100 bg-custom-2 text-white md btn-custom" (click)="pay('credit', '')">
+              Credit Card
+            </button>
+          </div>
+
+          <div class="flex-grow-1 p-2">
+            <button mat-button class="w-100 bg-custom-2 text-white md btn-custom" (click)="pay('master', '')">
+              Master Card
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <ng-select class="slt-custom mb-3" [(ngModel)]="addedCustomer" [ngModelOptions]="{standalone: true}"
+                     placeholder="Search customer ...">
+            <ng-option *ngFor="let customer of customers" [value]="customer">
+              <div>{{customer.name}} ({{customer.email}})</div>
+            </ng-option>
+          </ng-select>
+        </div>
+
+        <div class="d-flex mb-3">
+          <div class="flex-grow-1 p-2">
+            <button mat-button class="w-100 bg-custom-2 text-white md btn-custom"
+                    [ngClass]="{'disabled': !addedCustomer}" (click)="pay('layby', 'account')">
+              Layby
+            </button>
+          </div>
+
+          <div class="flex-grow-1 p-2">
+            <button mat-button class="w-100 bg-custom-2 text-white md btn-custom"
+                    [ngClass]="{'disabled': !addedCustomer || addedCustomer.store_credit <= 0}" (click)="pay('store_credit', 'credit')">
+              Store Credit
+            </button>
+          </div>
+
+          <div class="flex-grow-1 p-2">
+            <button mat-button class="w-100 bg-custom-2 text-white md btn-custom"
+                    [ngClass]="{'disabled': !addedCustomer}" (click)="pay('on account', 'account')">
+              On Account
+            </button>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="amountTotal <= 0">
+        <div>
+          <div class="d-flex justify-content-center h3 font-weight-bold mt-4 mb-5" >
+            <ng-container *ngIf="amountTotal === 0">
+              Payment Received
+            </ng-container>
+            <ng-container *ngIf="amountTotal < 0">
+              Give $ {{util.abs(amountTotal)}} Change
+            </ng-container>
+          </div>
+          <div class="d-flex justify-content-around mt-5 mb-4">
+            <button mat-button type="button" printSectionId="sale" ngxPrint>
+              <mat-icon color="primary">print</mat-icon>
+              Print
+            </button>
+
+            <button mat-button type="button" printSectionId="gift" ngxPrint>
+              <mat-icon color="primary">card_giftcard</mat-icon>
+              Gift Receipt
+            </button>
+          </div>
+
+          <ng-select class="slt-custom mb-3" [(ngModel)]="addedCustomer" [ngModelOptions]="{standalone: true}"
+                     placeholder="Search customer ...">
+            <ng-option *ngFor="let customer of customers" [value]="customer">
+              <div>{{customer.name}} ({{customer.email}})</div>
+            </ng-option>
+            <mat-icon matPrefix class="mr-2">account_circle</mat-icon>
+          </ng-select>
+          <div>
+            <button mat-button class="btn-custom text-white w-100 bg-custom-2"
+                    printSectionId="sale" ngxPrint (click)="completeSale()">
+              Complete Sale
+            </button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

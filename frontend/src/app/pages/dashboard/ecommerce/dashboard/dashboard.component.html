@@ -1,0 +1,152 @@
+<div class="home-container">
+  <div class="home-content">
+    <div class="report" 
+      fxLayout="row" 
+      fxLayout.gt-lg="row"  
+      fxLayout.gt-md="row"  
+      fxLayout.gt-sm="column"  
+      fxLayout.gt-xs="column"
+      fxLayout.xs="column">
+      <div  class="sales-report p-3" fxFlex="50" fxLayout="column" fxLayoutGap="30px">
+        <div class="report-header" 
+          fxLayout="row"
+          fxLayoutAlign="space-around center">
+          <div><h1>Sales Report</h1></div>
+          <div>
+            <mat-form-field >
+              <mat-select value="Monthly">
+                <mat-option *ngFor="let period of periods" [value]="period">
+                  {{period}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="chart-wrapper mb-4">
+          <canvas baseChart
+                  [datasets]="salesChartData"
+                  [labels]="lineChartLabels"
+                  [options]="lineChartOptions"
+                  [colors]="salesChartColors"
+                  [legend]="lineChartLegend"
+                  [chartType]="lineChartType"
+                  [plugins]="lineChartPlugins">
+          </canvas>
+        </div>
+
+        <mat-card class="p-1">
+          <mat-card-header>
+            <mat-card-title><h2>Sales Report</h2></mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="p-4 mb-2">
+            <div class="info-table fill text-center">
+            <table>
+              <tr>
+                <th class="light-green-bg">Total By Month</th>
+                <th class="light-red-bg">Total By Day</th>
+              </tr>
+              <tr>
+                <td class="">{{totalByMonth}}</td>
+                <td class="">{{totalByDay}}</td>
+              </tr>
+            </table>
+          </div>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="p-1">
+          <mat-card-header>
+            <mat-card-title><h2>Stock Report</h2></mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="p-4 mb-2">
+            <div class="info-table fill text-center">
+            <table>
+              <tr>
+                <th class="light-green-bg">Stock Levels</th>
+                <th class="blue-bg">Stock on Hand</th>
+              </tr>
+              <tr>
+                <td class="">{{stockLevels}}</td>
+                <td class="">{{stockOnHand}}</td>
+              </tr>
+            </table>
+          </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div  class="product-report p-3" fxFlex="50" fxLayout="column" fxLayoutGap="30px">
+        <div class="report-header" fxLayout="row" fxLayoutAlign="space-around center">
+          <div><h1>Product Report</h1></div>
+          <div>
+            <mat-form-field >
+              <mat-select value="Monthly">
+                <mat-option *ngFor="let period of periods" [value]="period">
+                  {{period}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="chart-wrapper mb-4">
+          <canvas baseChart
+                  [datasets]="productChartData"
+                  [labels]="lineChartLabels"
+                  [options]="lineChartOptions"
+                  [colors]="productChartColors"
+                  [legend]="lineChartLegend"
+                  [chartType]="lineChartType"
+                  [plugins]="lineChartPlugins">
+          </canvas>
+        </div>
+
+        <mat-card class="p-1">
+          <mat-card-header>
+            <mat-card-title><h2>Product Report</h2></mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="p-4 mb-2">
+            <div class="info-table fill text-center">
+            <table>
+              <tr>
+                <th class="light-blue-bg">Product Sales by User</th>
+                <th class="yellow-bg">Product Sales by Customer</th>
+              </tr>
+              <tr>
+                <td class="">{{productsByUser}}</td>
+                <td class="">{{productsByCustomer}}</td>
+              </tr>
+              <tr>
+                <th class="green-bg">Product Sales by Outlet</th>
+                <th class="red-bg">Product Sales by Supplier</th>
+              </tr>
+              <tr>
+                <td class="">{{productsByOutlet}}</td>
+                <td class="">{{productsBySupplier}}</td>
+              </tr>
+            </table>
+          </div>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="p-1">
+          <mat-card-header>
+            <mat-card-title><h2>Stock Report</h2></mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="p-4 mb-2">
+            <div class="info-table fill text-center">
+            <table>
+              <tr>
+                <th class="light-aqua-bg">Register Closures</th>
+                <td class="">{{registerClosures}}</td>
+              </tr>
+            </table>
+          </div>
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+    </div>
+  </div>
+</div>

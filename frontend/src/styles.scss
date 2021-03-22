@@ -1,0 +1,310 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: lato,"Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; }
+@import 'assets/style/index';
+
+button:focus, button:active:focus, button.active:focus, input:focus, select:focus {
+  outline: none !important;
+}
+
+
+.capos-side-menu{
+  background: none;
+  
+  .mat-list{
+    background: #e5e5e5;
+    border: none;
+    border-radius: 10px;
+    .mat-list-item{
+      background: #c4c4c4 !important;
+      border: none;
+      border-radius: 10px;
+      margin-bottom: 2px;
+      height: 56px;
+      padding-left: 10px;
+      font-family: Roboto, Arial, Helvetica, sans-serif;
+      color: #ffffff !important;
+      font-size: 20px;
+
+      .mat-list-avatar{
+        border-radius: 0 !important;
+      }
+    }
+    .mat-list-item.selected-amml-item{
+      color: #ffffff !important;
+      background: #00cdff !important;
+    }
+    .mat-list-item:hover{
+      background-image: radial-gradient(rgba(219,249,255, 0.2), rgba(0,127,255, 0.01)) !important;
+    }
+
+  }
+
+  mat-divider{
+    display: none;
+  }
+}
+
+.capos-side-menu>.mat-list>ng-list-item:nth-child(2){
+
+  .mat-list-item, .mat-list-item:hover{
+    background: #ffffff !important;
+    height: 48px;
+    border-radius: 0;
+    padding-left: 8px;
+    color: #222222 !important;
+  }
+}
+
+.capos-side-menu>.mat-list>ng-list-item:nth-child(2)::after{
+  display: block;
+  content: " ";
+  position: absolute;
+  bottom: 0;
+  z-index: 999;
+  float: left;
+  width: 100%;
+  height: 48px;
+  top: 58px;
+}
+
+.fill{
+  width: 100%;
+}
+
+.table-container{
+  padding: 1rem;
+  position: relative;
+
+  .table-wrapper{
+    padding: 0px;
+    max-height: 320px;
+    min-height: 96px;
+    overflow: auto;
+    position: relative;
+    border: 1px solid rgba(100, 100, 100, 0.1);
+  }
+
+  table{
+    width: 100%;  
+
+    th{
+      font-size: 1.1em;
+      padding-left: 3px;
+      padding-right: 3px;
+      background-color: #f4f4ff;
+      color: #429ec5;
+      white-space: nowrap;
+      border: 1px solid rgba(100, 100, 100, 0.03);
+      border-bottom-color: #c0c0c0;
+    }
+
+    td{
+      padding-left: 3px;
+      padding-right: 3px;
+      color: #111314;
+      white-space: nowrap;
+      border: 1px solid rgba(100, 100, 100, 0.03);
+      border-bottom-color: #c0e4e9;
+    }
+
+    tfoot{
+      background: #fff7f7;
+    }
+  }
+}
+
+.info-table{
+  display: block;
+
+  table{
+      border-collapse: unset;
+      border-spacing: 4px;
+      margin: 0 auto;
+      
+      th,td{
+          border-radius: 16px;
+          min-height: 50%;
+          min-width: 50%;
+          width: 50%;
+          padding: 6px 4px  !important;
+      }
+  
+      th{
+          font-size: 18px;
+          text-align: center;
+          vertical-align: middle;
+          font-family: Roboto, Arial, Helvetica, sans-serif;
+          font-weight: 500;
+          background-color: #f6f7ff;
+      }
+      td{
+          border: 1px solid #000000;
+      }
+
+  }
+}
+
+.text-left{
+  text-align: left !important;
+}
+
+.text-center{
+  text-align: center !important;
+}
+
+.text-right{
+  text-align: right !important;
+}
+
+.button {
+  margin-top:auto !important;
+}
+
+.middle{
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+}
+
+.light-green    { color: #98d87e !important }
+.light-red      { color: #e63950 !important }
+.light-blue     { color: #8ac9fe !important }
+.light-yellow   { color: #f9d765 !important }
+.light-aqua     { color: #32ddf9 !important }
+.light-default  { color: #c4c4c4 !important }
+
+.green    { color: #7ed63e !important }
+.red      { color: #c0272d !important }
+.blue     { color: #61a2f9 !important }
+.yellow   { color: #ffc502 !important }
+.aqua     { color: #32ddf9 !important }
+.default  { color: #8b8b8b !important }
+
+.light-green-bg    { background-color: #98d87e !important; color: #ffffff; }
+.light-red-bg      { background-color: #e63950 !important; color: #ffffff; }
+.light-blue-bg     { background-color: #8ac9fe !important; color: #ffffff; }
+.light-yellow-bg   { background-color: #f9d765 !important; color: #ffffff; }
+.light-aqua-bg     { background-color: #32ddf9 !important; color: #ffffff; }
+.light-default-bg  { background-color: #c4c4c4 !important; color: #ffffff; }
+
+.green-bg    { background-color: #7ed63e !important; color: #ffffff; }
+.red-bg      { background-color: #c0272d !important; color: #ffffff; }
+.blue-bg     { background-color: #61a2f9 !important; color: #ffffff; }
+.yellow-bg   { background-color: #ffc502 !important; color: #ffffff; }
+.aqua-bg     { background-color: #32ddf9 !important; color: #ffffff; }
+.default-bg  { background-color: #8b8b8b !important; color: #ffffff; }
+.no-bg     { background: none !important; color: #000000; }
+.no-border  { border: none !important; }
+
+.capos-card{
+  margin-left: auto;
+  margin-right: auto;
+  background: #ffffff;
+  width: 100%;
+
+  mat-card-header{
+    padding-right: 40px;
+
+    mat-card-title{
+      font-family: Mukta Mahee;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 28px;  
+
+      h1,h2,h3,h4,h5,h6{
+        font-family: inherit;
+      }
+    }
+  }
+
+  mat-card-content{
+    margin-bottom: 0px;
+  }
+
+  mat-card-actions{
+    display: flex !important;
+    justify-content: center !important;
+  }
+}
+
+.capos-title-bar{
+    font-family: Mukta Mahee;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 60px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.capos-help-bar{
+  display: flex !important;
+  background: #e5eaed;
+  padding: 1.5rem !important;
+  margin-bottom: 1rem !important;
+  color: rgba(0, 0, 0, 0.87);
+  font: 400 14px/20px Poppins, sans-serif;
+  letter-spacing: normal;
+  justify-content: space-between !important;
+
+  .help-text{
+    margin-top: auto;
+    margin-bottom: auto;
+    display: inline-block;
+  }
+  
+  .help-buttons{
+    display: inline-block;
+    text-align: right;
+
+    button{
+      background: #41af4b;
+      color: white;  
+      margin: 1px 3px;
+    }
+  }
+}
+
+.width-sm{
+  max-width: 400px;
+}
+
+.width-md{
+  max-width: 800px;
+}
+
+.container{
+  padding: 1.5rem !important;
+  max-width: 100%;
+}
+
+.tabs-container{
+  width: 100%;
+
+  .capos-tab-bar{
+    a{
+      color: #212835;
+      font-family: Mukta Mahee;
+      font-size: 18px;
+      font-weight: 600;
+      border-bottom: 3px solid rgba(0,0,0,0);
+    }
+    a:hover{
+      text-decoration: none;
+      color:  #1f2457;
+    }
+
+    a.active{
+      border-bottom-color: #00cdff;
+    }
+    
+  }
+
+  .container{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100%;
+  }
+}
+

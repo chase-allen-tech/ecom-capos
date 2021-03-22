@@ -1,0 +1,228 @@
+<div class="container p-4">
+  <div class="row">
+    <form [formGroup]="customerForm" (ngSubmit)="submit()" class="w-100">
+      <div class="h3 mb-3 d-flex align-items-center">
+        <button mat-icon-button type="button" (click)="goBack()">
+          <mat-icon>keyboard_backspace</mat-icon>
+        </button>
+        {{util.toUppercase(mode)}} Customer
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center  p-4 bg-grey">
+        <div>{{util.toUppercase(mode)}} a  customer. <a>Need help ?</a></div>
+        <div>
+          <button mat-raised-button type="button" (click)="goBack()" class="text-white px-3 bg-custom-1">Cancel
+          </button>
+          <button mat-raised-button type="submit" class="text-white px-3 ml-3 bg-custom-2">Save</button>
+        </div>
+      </div>
+
+      <div class="container pt-5">
+        <div class="h5 font-weight-bold mb-3">Details</div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Name</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <input matInput formControlName="name" placeholder="Type customer name">
+              <mat-error *ngIf="customerForm.get('name').hasError('required')">
+                Required field
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <label>Email</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <input matInput type="email" formControlName="email" placeholder="Type email">
+              <mat-error *ngIf="customerForm.get('email').hasError('required')">
+                Required field
+              </mat-error>
+              <mat-error *ngIf="customerForm.get('email').hasError('email')">
+                Input valid email
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <label>Group</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-select formControlName="group">
+                <mat-option value="">All</mat-option>
+                <mat-option *ngFor="let group of groups" [value]="group.name"> {{group.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <label>Contact Number</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <input matInput type="text" formControlName="contact" placeholder="Type contact number">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="h5 font-weight-bold pt-5 mb-3 border-top">Addresses</div>
+
+        <div class="row mb-3" >
+          <div class="col-md-12 h6 font-weight-bold mb-3">Physical Address</div>
+
+          <div class="col-md-6">
+            <label>Street 1</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <input matInput formControlName="physical_street1">
+            </mat-form-field>
+
+            <label>Suburb</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <input matInput formControlName="physical_suburb">
+            </mat-form-field>
+
+            <label>State</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <input matInput formControlName="physical_state">
+            </mat-form-field>
+
+          </div>
+
+          <div class="col-md-6">
+            <label>Street 2</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <input matInput formControlName="physical_street2">
+            </mat-form-field>
+
+            <label>Postcode</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <input matInput formControlName="physical_postcode">
+            </mat-form-field>
+
+            <label>Country</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-select formControlName="physical_country" class="w-100">
+                <mat-option *ngFor="let country of countries" [value]="country.country_name">
+                  {{country.country_name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-12 ml-2">
+            <mat-checkbox [(ngModel)]="existPostalAddress" [ngModelOptions]="{standalone: true}"
+                          (change)="addPostalAddress()" class="mb-3">
+              Postal Address different from Physical Address
+            </mat-checkbox>
+          </div>
+
+          <ng-container formGroupName="postal_address" *ngIf="existPostalAddress">
+            <div class="col-md-12 h6 font-weight-bold mb-3">Postal Address</div>
+
+            <div class="col-md-6">
+
+              <label>Street 1</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input matInput formControlName="postal_street1">
+              </mat-form-field>
+
+              <label>Suburb</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input matInput formControlName="postal_suburb">
+              </mat-form-field>
+
+              <label>State</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input matInput formControlName="postal_state">
+              </mat-form-field>
+
+            </div>
+
+            <div class="col-md-6">
+
+              <label>Street 2</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input matInput formControlName="postal_street2">
+              </mat-form-field>
+
+              <label>Postcode</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input matInput formControlName="postal_postcode">
+              </mat-form-field>
+
+              <label>Country</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-select formControlName="postal_country" class="w-100">
+                  <mat-option *ngFor="let country of countries" [value]="country.country_name">
+                    {{country.country_name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            </div>
+          </ng-container>
+        </div>
+
+        <div class="h5 font-weight-bold pt-5 mb-3 border-top">Additional Info</div>
+
+        <div class="row  mb-3">
+          <div class="col-md-6">
+            <label>Customer Code</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <input matInput type="text" formControlName="code" placeholder="Type customer code">
+            </mat-form-field>
+
+            <label>Date of Birth</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <input matInput formControlName="birthday" [matDatepicker]="birthday"  placeholder="Choose a date">
+              <mat-datepicker #birthday></mat-datepicker>
+              <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
+            </mat-form-field>
+
+            <label>Website</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <input matInput type="text" formControlName="website" placeholder="Type website url">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <label>Company Name</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <input matInput type="text" formControlName="code" placeholder="Type company name">
+            </mat-form-field>
+
+            <label>Gender</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <input matInput type="text" formControlName="gender" placeholder="Type gender">
+            </mat-form-field>
+
+            <label>Twitter</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <input matInput type="text" formControlName="twitter" placeholder="Type twitter url">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-12">
+            <label>Note</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <input matInput type="text" formControlName="note" placeholder="Type a not fo">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="h5 font-weight-bold pt-5 mb-3 border-top">Custom Fields</div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label>Custom Field 1</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <input matInput type="text" formControlName="field1" placeholder="Type custom vale">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <label>Custom Field 2</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <input matInput type="text" formControlName="field2" placeholder="Type custom vale">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

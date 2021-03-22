@@ -1,0 +1,252 @@
+country_code,country_name,currency_code,iso_numeric,capital,continent_name,continent,languages,geo_name_id
+AD,Andorra,EUR,20,Andorra la Vella,Europe,EU,ca,3041565
+AE,United Arab Emirates,AED,784,Abu Dhabi,Asia,AS,"ar-AE,fa,en,hi,ur",290557
+AF,Afghanistan,AFN,4,Kabul,Asia,AS,"fa-AF,ps,uz-AF,tk",1149361
+AG,Antigua and Barbuda,XCD,28,St. John's,North America,NA,en-AG,3576396
+AI,Anguilla,XCD,660,The Valley,North America,NA,en-AI,3573511
+AL,Albania,ALL,8,Tirana,Europe,EU,"sq,el",783754
+AM,Armenia,AMD,51,Yerevan,Asia,AS,hy,174982
+AO,Angola,AOA,24,Luanda,Africa,AF,pt-AO,3351879
+AQ,Antarctica,AQD,10,,Antarctica,AN,,6697173
+AR,Argentina,ARS,32,Buenos Aires,South America,SA,"es-AR,en,it,de,fr,gn",3865483
+AS,American Samoa,USD,16,Pago Pago,Oceania,OC,"en-AS,sm,to",5880801
+AT,Austria,EUR,40,Vienna,Europe,EU,"de-AT,hr,hu,sl",2782113
+AU,Australia,AUD,36,Canberra,Oceania,OC,en-AU,2077456
+AW,Aruba,AWG,533,Oranjestad,North America,NA,"nl-AW,pap,es,en",3577279
+AX,Åland,EUR,248,Mariehamn,Europe,EU,sv-AX,661882
+AZ,Azerbaijan,AZN,31,Baku,Asia,AS,"az,ru,hy",587116
+BA,Bosnia and Herzegovina,BAM,70,Sarajevo,Europe,EU,"bs,hr-BA,sr-BA",3277605
+BB,Barbados,BBD,52,Bridgetown,North America,NA,en-BB,3374084
+BD,Bangladesh,BDT,50,Dhaka,Asia,AS,"bn-BD,en",1210997
+BE,Belgium,EUR,56,Brussels,Europe,EU,"nl-BE,fr-BE,de-BE",2802361
+BF,Burkina Faso,XOF,854,Ouagadougou,Africa,AF,"fr-BF,mos",2361809
+BG,Bulgaria,BGN,100,Sofia,Europe,EU,"bg,tr-BG,rom",732800
+BH,Bahrain,BHD,48,Manama,Asia,AS,"ar-BH,en,fa,ur",290291
+BI,Burundi,BIF,108,Bujumbura,Africa,AF,"fr-BI,rn",433561
+BJ,Benin,XOF,204,Porto-Novo,Africa,AF,fr-BJ,2395170
+BL,Saint Barthélemy,EUR,652,Gustavia,North America,NA,fr,3578476
+BM,Bermuda,BMD,60,Hamilton,North America,NA,"en-BM,pt",3573345
+BN,Brunei,BND,96,Bandar Seri Begawan,Asia,AS,"ms-BN,en-BN",1820814
+BO,Bolivia,BOB,68,Sucre,South America,SA,"es-BO,qu,ay",3923057
+BQ,Bonaire,USD,535,Kralendijk,North America,NA,"nl,pap,en",7626844
+BR,Brazil,BRL,76,Brasília,South America,SA,"pt-BR,es,en,fr",3469034
+BS,Bahamas,BSD,44,Nassau,North America,NA,en-BS,3572887
+BT,Bhutan,BTN,64,Thimphu,Asia,AS,dz,1252634
+BV,Bouvet Island,NOK,74,,Antarctica,AN,,3371123
+BW,Botswana,BWP,72,Gaborone,Africa,AF,"en-BW,tn-BW",933860
+BY,Belarus,BYN,112,Minsk,Europe,EU,"be,ru",630336
+BZ,Belize,BZD,84,Belmopan,North America,NA,"en-BZ,es",3582678
+CA,Canada,CAD,124,Ottawa,North America,NA,"en-CA,fr-CA,iu",6251999
+CC,Cocos [Keeling] Islands,AUD,166,West Island,Asia,AS,"ms-CC,en",1547376
+CD,Democratic Republic of the Congo,CDF,180,Kinshasa,Africa,AF,"fr-CD,ln,ktu,kg,sw,lua",203312
+CF,Central African Republic,XAF,140,Bangui,Africa,AF,"fr-CF,sg,ln,kg",239880
+CG,Republic of the Congo,XAF,178,Brazzaville,Africa,AF,"fr-CG,kg,ln-CG",2260494
+CH,Switzerland,CHF,756,Bern,Europe,EU,"de-CH,fr-CH,it-CH,rm",2658434
+CI,Ivory Coast,XOF,384,Yamoussoukro,Africa,AF,fr-CI,2287781
+CK,Cook Islands,NZD,184,Avarua,Oceania,OC,"en-CK,mi",1899402
+CL,Chile,CLP,152,Santiago,South America,SA,es-CL,3895114
+CM,Cameroon,XAF,120,Yaoundé,Africa,AF,"en-CM,fr-CM",2233387
+CN,China,CNY,156,Beijing,Asia,AS,"zh-CN,yue,wuu,dta,ug,za",1814991
+CO,Colombia,COP,170,Bogotá,South America,SA,es-CO,3686110
+CR,Costa Rica,CRC,188,San José,North America,NA,"es-CR,en",3624060
+CU,Cuba,CUP,192,Havana,North America,NA,"es-CU,pap",3562981
+CV,Cape Verde,CVE,132,Praia,Africa,AF,pt-CV,3374766
+CW,Curacao,ANG,531,Willemstad,North America,NA,"nl,pap",7626836
+CX,Christmas Island,AUD,162,Flying Fish Cove,Oceania,OC,"en,zh,ms-CC",2078138
+CY,Cyprus,EUR,196,Nicosia,Europe,EU,"el-CY,tr-CY,en",146669
+CZ,Czechia,CZK,203,Prague,Europe,EU,"cs,sk",3077311
+DE,Germany,EUR,276,Berlin,Europe,EU,de,2921044
+DJ,Djibouti,DJF,262,Djibouti,Africa,AF,"fr-DJ,ar,so-DJ,aa",223816
+DK,Denmark,DKK,208,Copenhagen,Europe,EU,"da-DK,en,fo,de-DK",2623032
+DM,Dominica,XCD,212,Roseau,North America,NA,en-DM,3575830
+DO,Dominican Republic,DOP,214,Santo Domingo,North America,NA,es-DO,3508796
+DZ,Algeria,DZD,12,Algiers,Africa,AF,ar-DZ,2589581
+EC,Ecuador,USD,218,Quito,South America,SA,es-EC,3658394
+EE,Estonia,EUR,233,Tallinn,Europe,EU,"et,ru",453733
+EG,Egypt,EGP,818,Cairo,Africa,AF,"ar-EG,en,fr",357994
+EH,Western Sahara,MAD,732,Laâyoune / El Aaiún,Africa,AF,"ar,mey",2461445
+ER,Eritrea,ERN,232,Asmara,Africa,AF,"aa-ER,ar,tig,kun,ti-ER",338010
+ES,Spain,EUR,724,Madrid,Europe,EU,"es-ES,ca,gl,eu,oc",2510769
+ET,Ethiopia,ETB,231,Addis Ababa,Africa,AF,"am,en-ET,om-ET,ti-ET,so-ET,sid",337996
+FI,Finland,EUR,246,Helsinki,Europe,EU,"fi-FI,sv-FI,smn",660013
+FJ,Fiji,FJD,242,Suva,Oceania,OC,"en-FJ,fj",2205218
+FK,Falkland Islands,FKP,238,Stanley,South America,SA,en-FK,3474414
+FM,Micronesia,USD,583,Palikir,Oceania,OC,"en-FM,chk,pon,yap,kos,uli,woe,nkr,kpg",2081918
+FO,Faroe Islands,DKK,234,Tórshavn,Europe,EU,"fo,da-FO",2622320
+FR,France,EUR,250,Paris,Europe,EU,"fr-FR,frp,br,co,ca,eu,oc",3017382
+GA,Gabon,XAF,266,Libreville,Africa,AF,fr-GA,2400553
+GB,United Kingdom,GBP,826,London,Europe,EU,"en-GB,cy-GB,gd",2635167
+GD,Grenada,XCD,308,St. George's,North America,NA,en-GD,3580239
+GE,Georgia,GEL,268,Tbilisi,Asia,AS,"ka,ru,hy,az",614540
+GF,French Guiana,EUR,254,Cayenne,South America,SA,fr-GF,3381670
+GG,Guernsey,GBP,831,St Peter Port,Europe,EU,"en,nrf",3042362
+GH,Ghana,GHS,288,Accra,Africa,AF,"en-GH,ak,ee,tw",2300660
+GI,Gibraltar,GIP,292,Gibraltar,Europe,EU,"en-GI,es,it,pt",2411586
+GL,Greenland,DKK,304,Nuuk,North America,NA,"kl,da-GL,en",3425505
+GM,Gambia,GMD,270,Bathurst,Africa,AF,"en-GM,mnk,wof,wo,ff",2413451
+GN,Guinea,GNF,324,Conakry,Africa,AF,fr-GN,2420477
+GP,Guadeloupe,EUR,312,Basse-Terre,North America,NA,fr-GP,3579143
+GQ,Equatorial Guinea,XAF,226,Malabo,Africa,AF,"es-GQ,fr",2309096
+GR,Greece,EUR,300,Athens,Europe,EU,"el-GR,en,fr",390903
+GS,South Georgia and the South Sandwich Islands,GBP,239,Grytviken,Antarctica,AN,en,3474415
+GT,Guatemala,GTQ,320,Guatemala City,North America,NA,es-GT,3595528
+GU,Guam,USD,316,Hagåtña,Oceania,OC,"en-GU,ch-GU",4043988
+GW,Guinea-Bissau,XOF,624,Bissau,Africa,AF,"pt-GW,pov",2372248
+GY,Guyana,GYD,328,Georgetown,South America,SA,en-GY,3378535
+HK,Hong Kong,HKD,344,Hong Kong,Asia,AS,"zh-HK,yue,zh,en",1819730
+HM,Heard Island and McDonald Islands,AUD,334,,Antarctica,AN,,1547314
+HN,Honduras,HNL,340,Tegucigalpa,North America,NA,"es-HN,cab,miq",3608932
+HR,Croatia,HRK,191,Zagreb,Europe,EU,"hr-HR,sr",3202326
+HT,Haiti,HTG,332,Port-au-Prince,North America,NA,"ht,fr-HT",3723988
+HU,Hungary,HUF,348,Budapest,Europe,EU,hu-HU,719819
+ID,Indonesia,IDR,360,Jakarta,Asia,AS,"id,en,nl,jv",1643084
+IE,Ireland,EUR,372,Dublin,Europe,EU,"en-IE,ga-IE",2963597
+IL,Israel,ILS,376,,Asia,AS,"he,ar-IL,en-IL,",294640
+IM,Isle of Man,GBP,833,Douglas,Europe,EU,"en,gv",3042225
+IN,India,INR,356,New Delhi,Asia,AS,"en-IN,hi,bn,te,mr,ta,ur,gu,kn,ml,or,pa,as,bh,sat,ks,ne,sd,kok,doi,mni,sit,sa,fr,lus,inc",1269750
+IO,British Indian Ocean Territory,USD,86,,Asia,AS,en-IO,1282588
+IQ,Iraq,IQD,368,Baghdad,Asia,AS,"ar-IQ,ku,hy",99237
+IR,Iran,IRR,364,Tehran,Asia,AS,"fa-IR,ku",130758
+IS,Iceland,ISK,352,Reykjavik,Europe,EU,"is,en,de,da,sv,no",2629691
+IT,Italy,EUR,380,Rome,Europe,EU,"it-IT,de-IT,fr-IT,sc,ca,co,sl",3175395
+JE,Jersey,GBP,832,Saint Helier,Europe,EU,"en,fr,nrf",3042142
+JM,Jamaica,JMD,388,Kingston,North America,NA,en-JM,3489940
+JO,Jordan,JOD,400,Amman,Asia,AS,"ar-JO,en",248816
+JP,Japan,JPY,392,Tokyo,Asia,AS,ja,1861060
+KE,Kenya,KES,404,Nairobi,Africa,AF,"en-KE,sw-KE",192950
+KG,Kyrgyzstan,KGS,417,Bishkek,Asia,AS,"ky,uz,ru",1527747
+KH,Cambodia,KHR,116,Phnom Penh,Asia,AS,"km,fr,en",1831722
+KI,Kiribati,AUD,296,Tarawa,Oceania,OC,"en-KI,gil",4030945
+KM,Comoros,KMF,174,Moroni,Africa,AF,"ar,fr-KM",921929
+KN,Saint Kitts and Nevis,XCD,659,Basseterre,North America,NA,en-KN,3575174
+KP,North Korea,KPW,408,Pyongyang,Asia,AS,ko-KP,1873107
+KR,South Korea,KRW,410,Seoul,Asia,AS,"ko-KR,en",1835841
+KW,Kuwait,KWD,414,Kuwait City,Asia,AS,"ar-KW,en",285570
+KY,Cayman Islands,KYD,136,George Town,North America,NA,en-KY,3580718
+KZ,Kazakhstan,KZT,398,Astana,Asia,AS,"kk,ru",1522867
+LA,Laos,LAK,418,Vientiane,Asia,AS,"lo,fr,en",1655842
+LB,Lebanon,LBP,422,Beirut,Asia,AS,"ar-LB,fr-LB,en,hy",272103
+LC,Saint Lucia,XCD,662,Castries,North America,NA,en-LC,3576468
+LI,Liechtenstein,CHF,438,Vaduz,Europe,EU,de-LI,3042058
+LK,Sri Lanka,LKR,144,Colombo,Asia,AS,"si,ta,en",1227603
+LR,Liberia,LRD,430,Monrovia,Africa,AF,en-LR,2275384
+LS,Lesotho,LSL,426,Maseru,Africa,AF,"en-LS,st,zu,xh",932692
+LT,Lithuania,EUR,440,Vilnius,Europe,EU,"lt,ru,pl",597427
+LU,Luxembourg,EUR,442,Luxembourg,Europe,EU,"lb,de-LU,fr-LU",2960313
+LV,Latvia,EUR,428,Riga,Europe,EU,"lv,ru,lt",458258
+LY,Libya,LYD,434,Tripoli,Africa,AF,"ar-LY,it,en",2215636
+MA,Morocco,MAD,504,Rabat,Africa,AF,"ar-MA,ber,fr",2542007
+MC,Monaco,EUR,492,Monaco,Europe,EU,"fr-MC,en,it",2993457
+MD,Moldova,MDL,498,Chişinău,Europe,EU,"ro,ru,gag,tr",617790
+ME,Montenegro,EUR,499,Podgorica,Europe,EU,"sr,hu,bs,sq,hr,rom",3194884
+MF,Saint Martin,EUR,663,Marigot,North America,NA,fr,3578421
+MG,Madagascar,MGA,450,Antananarivo,Africa,AF,"fr-MG,mg",1062947
+MH,Marshall Islands,USD,584,Majuro,Oceania,OC,"mh,en-MH",2080185
+MK,Macedonia,MKD,807,Skopje,Europe,EU,"mk,sq,tr,rmm,sr",718075
+ML,Mali,XOF,466,Bamako,Africa,AF,"fr-ML,bm",2453866
+MM,Myanmar [Burma],MMK,104,Naypyitaw,Asia,AS,my,1327865
+MN,Mongolia,MNT,496,Ulan Bator,Asia,AS,"mn,ru",2029969
+MO,Macao,MOP,446,Macao,Asia,AS,"zh,zh-MO,pt",1821275
+MP,Northern Mariana Islands,USD,580,Saipan,Oceania,OC,"fil,tl,zh,ch-MP,en-MP",4041468
+MQ,Martinique,EUR,474,Fort-de-France,North America,NA,fr-MQ,3570311
+MR,Mauritania,MRO,478,Nouakchott,Africa,AF,"ar-MR,fuc,snk,fr,mey,wo",2378080
+MS,Montserrat,XCD,500,Plymouth,North America,NA,en-MS,3578097
+MT,Malta,EUR,470,Valletta,Europe,EU,"mt,en-MT",2562770
+MU,Mauritius,MUR,480,Port Louis,Africa,AF,"en-MU,bho,fr",934292
+MV,Maldives,MVR,462,Malé,Asia,AS,"dv,en",1282028
+MW,Malawi,MWK,454,Lilongwe,Africa,AF,"ny,yao,tum,swk",927384
+MX,Mexico,MXN,484,Mexico City,North America,NA,es-MX,3996063
+MY,Malaysia,MYR,458,Kuala Lumpur,Asia,AS,"ms-MY,en,zh,ta,te,ml,pa,th",1733045
+MZ,Mozambique,MZN,508,Maputo,Africa,AF,"pt-MZ,vmw",1036973
+NA,Namibia,NAD,516,Windhoek,Africa,AF,"en-NA,af,de,hz,naq",3355338
+NC,New Caledonia,XPF,540,Noumea,Oceania,OC,fr-NC,2139685
+NE,Niger,XOF,562,Niamey,Africa,AF,"fr-NE,ha,kr,dje",2440476
+NF,Norfolk Island,AUD,574,Kingston,Oceania,OC,en-NF,2155115
+NG,Nigeria,NGN,566,Abuja,Africa,AF,"en-NG,ha,yo,ig,ff",2328926
+NI,Nicaragua,NIO,558,Managua,North America,NA,"es-NI,en",3617476
+NL,Netherlands,EUR,528,Amsterdam,Europe,EU,"nl-NL,fy-NL",2750405
+NO,Norway,NOK,578,Oslo,Europe,EU,"no,nb,nn,se,fi",3144096
+NP,Nepal,NPR,524,Kathmandu,Asia,AS,"ne,en",1282988
+NR,Nauru,AUD,520,Yaren,Oceania,OC,"na,en-NR",2110425
+NU,Niue,NZD,570,Alofi,Oceania,OC,"niu,en-NU",4036232
+NZ,New Zealand,NZD,554,Wellington,Oceania,OC,"en-NZ,mi",2186224
+OM,Oman,OMR,512,Muscat,Asia,AS,"ar-OM,en,bal,ur",286963
+PA,Panama,PAB,591,Panama City,North America,NA,"es-PA,en",3703430
+PE,Peru,PEN,604,Lima,South America,SA,"es-PE,qu,ay",3932488
+PF,French Polynesia,XPF,258,Papeete,Oceania,OC,"fr-PF,ty",4030656
+PG,Papua New Guinea,PGK,598,Port Moresby,Oceania,OC,"en-PG,ho,meu,tpi",2088628
+PH,Philippines,PHP,608,Manila,Asia,AS,"tl,en-PH,fil,ceb,tgl,ilo,hil,war,pam,bik,bcl,pag,mrw,tsg,mdh,cbk,krj,sgd,msb,akl,ibg,yka,mta,abx",1694008
+PK,Pakistan,PKR,586,Islamabad,Asia,AS,"ur-PK,en-PK,pa,sd,ps,brh",1168579
+PL,Poland,PLN,616,Warsaw,Europe,EU,pl,798544
+PM,Saint Pierre and Miquelon,EUR,666,Saint-Pierre,North America,NA,fr-PM,3424932
+PN,Pitcairn Islands,NZD,612,Adamstown,Oceania,OC,en-PN,4030699
+PR,Puerto Rico,USD,630,San Juan,North America,NA,"en-PR,es-PR",4566966
+PS,Palestine,ILS,275,,Asia,AS,ar-PS,6254930
+PT,Portugal,EUR,620,Lisbon,Europe,EU,"pt-PT,mwl",2264397
+PW,Palau,USD,585,Melekeok,Oceania,OC,"pau,sov,en-PW,tox,ja,fil,zh",1559582
+PY,Paraguay,PYG,600,Asunción,South America,SA,"es-PY,gn",3437598
+QA,Qatar,QAR,634,Doha,Asia,AS,"ar-QA,es",289688
+RE,Réunion,EUR,638,Saint-Denis,Africa,AF,fr-RE,935317
+RO,Romania,RON,642,Bucharest,Europe,EU,"ro,hu,rom",798549
+RS,Serbia,RSD,688,Belgrade,Europe,EU,"sr,hu,bs,rom",6290252
+RU,Russia,RUB,643,Moscow,Europe,EU,"ru,tt,xal,cau,ady,kv,ce,tyv,cv,udm,tut,mns,bua,myv,mdf,chm,ba,inh,tut,kbd,krc,ava,sah,nog",2017370
+RW,Rwanda,RWF,646,Kigali,Africa,AF,"rw,en-RW,fr-RW,sw",49518
+SA,Saudi Arabia,SAR,682,Riyadh,Asia,AS,ar-SA,102358
+SB,Solomon Islands,SBD,90,Honiara,Oceania,OC,"en-SB,tpi",2103350
+SC,Seychelles,SCR,690,Victoria,Africa,AF,"en-SC,fr-SC",241170
+SD,Sudan,SDG,729,Khartoum,Africa,AF,"ar-SD,en,fia",366755
+SE,Sweden,SEK,752,Stockholm,Europe,EU,"sv-SE,se,sma,fi-SE",2661886
+SG,Singapore,SGD,702,Singapore,Asia,AS,"cmn,en-SG,ms-SG,ta-SG,zh-SG",1880251
+SH,Saint Helena,SHP,654,Jamestown,Africa,AF,en-SH,3370751
+SI,Slovenia,EUR,705,Ljubljana,Europe,EU,"sl,sh",3190538
+SJ,Svalbard and Jan Mayen,NOK,744,Longyearbyen,Europe,EU,"no,ru",607072
+SK,Slovakia,EUR,703,Bratislava,Europe,EU,"sk,hu",3057568
+SL,Sierra Leone,SLL,694,Freetown,Africa,AF,"en-SL,men,tem",2403846
+SM,San Marino,EUR,674,San Marino,Europe,EU,it-SM,3168068
+SN,Senegal,XOF,686,Dakar,Africa,AF,"fr-SN,wo,fuc,mnk",2245662
+SO,Somalia,SOS,706,Mogadishu,Africa,AF,"so-SO,ar-SO,it,en-SO",51537
+SR,Suriname,SRD,740,Paramaribo,South America,SA,"nl-SR,en,srn,hns,jv",3382998
+SS,South Sudan,SSP,728,Juba,Africa,AF,en,7909807
+ST,São Tomé and Príncipe,STD,678,São Tomé,Africa,AF,pt-ST,2410758
+SV,El Salvador,USD,222,San Salvador,North America,NA,es-SV,3585968
+SX,Sint Maarten,ANG,534,Philipsburg,North America,NA,"nl,en",7609695
+SY,Syria,SYP,760,Damascus,Asia,AS,"ar-SY,ku,hy,arc,fr,en",163843
+SZ,Swaziland,SZL,748,Mbabane,Africa,AF,"en-SZ,ss-SZ",934841
+TC,Turks and Caicos Islands,USD,796,Cockburn Town,North America,NA,en-TC,3576916
+TD,Chad,XAF,148,N'Djamena,Africa,AF,"fr-TD,ar-TD,sre",2434508
+TF,French Southern Territories,EUR,260,Port-aux-Français,Antarctica,AN,fr,1546748
+TG,Togo,XOF,768,Lomé,Africa,AF,"fr-TG,ee,hna,kbp,dag,ha",2363686
+TH,Thailand,THB,764,Bangkok,Asia,AS,"th,en",1605651
+TJ,Tajikistan,TJS,762,Dushanbe,Asia,AS,"tg,ru",1220409
+TK,Tokelau,NZD,772,,Oceania,OC,"tkl,en-TK",4031074
+TL,East Timor,USD,626,Dili,Oceania,OC,"tet,pt-TL,id,en",1966436
+TM,Turkmenistan,TMT,795,Ashgabat,Asia,AS,"tk,ru,uz",1218197
+TN,Tunisia,TND,788,Tunis,Africa,AF,"ar-TN,fr",2464461
+TO,Tonga,TOP,776,Nuku'alofa,Oceania,OC,"to,en-TO",4032283
+TR,Turkey,TRY,792,Ankara,Asia,AS,"tr-TR,ku,diq,az,av",298795
+TT,Trinidad and Tobago,TTD,780,Port of Spain,North America,NA,"en-TT,hns,fr,es,zh",3573591
+TV,Tuvalu,AUD,798,Funafuti,Oceania,OC,"tvl,en,sm,gil",2110297
+TW,Taiwan,TWD,158,Taipei,Asia,AS,"zh-TW,zh,nan,hak",1668284
+TZ,Tanzania,TZS,834,Dodoma,Africa,AF,"sw-TZ,en,ar",149590
+UA,Ukraine,UAH,804,Kiev,Europe,EU,"uk,ru-UA,rom,pl,hu",690791
+UG,Uganda,UGX,800,Kampala,Africa,AF,"en-UG,lg,sw,ar",226074
+UM,U.S. Minor Outlying Islands,USD,581,,Oceania,OC,en-UM,5854968
+US,United States,USD,840,Washington,North America,NA,"en-US,es-US,haw,fr",6252001
+UY,Uruguay,UYU,858,Montevideo,South America,SA,es-UY,3439705
+UZ,Uzbekistan,UZS,860,Tashkent,Asia,AS,"uz,ru,tg",1512440
+VA,Vatican City,EUR,336,Vatican City,Europe,EU,"la,it,fr",3164670
+VC,Saint Vincent and the Grenadines,XCD,670,Kingstown,North America,NA,"en-VC,fr",3577815
+VE,Venezuela,VEF,862,Caracas,South America,SA,es-VE,3625428
+VG,British Virgin Islands,USD,92,Road Town,North America,NA,en-VG,3577718
+VI,U.S. Virgin Islands,USD,850,Charlotte Amalie,North America,NA,en-VI,4796775
+VN,Vietnam,VND,704,Hanoi,Asia,AS,"vi,en,fr,zh,km",1562822
+VU,Vanuatu,VUV,548,Port Vila,Oceania,OC,"bi,en-VU,fr-VU",2134431
+WF,Wallis and Futuna,XPF,876,Mata-Utu,Oceania,OC,"wls,fud,fr-WF",4034749
+WS,Samoa,WST,882,Apia,Oceania,OC,"sm,en-WS",4034894
+XK,Kosovo,EUR,0,Pristina,Europe,EU,"sq,sr",831053
+YE,Yemen,YER,887,Sanaa,Asia,AS,ar-YE,69543
+YT,Mayotte,EUR,175,Mamoudzou,Africa,AF,fr-YT,1024031
+ZA,South Africa,ZAR,710,Pretoria,Africa,AF,"zu,xh,af,nso,en-ZA,tn,st,ts,ss,ve,nr",953987
+ZM,Zambia,ZMW,894,Lusaka,Africa,AF,"en-ZM,bem,loz,lun,lue,ny,toi",895949
+ZW,Zimbabwe,ZWL,716,Harare,Africa,AF,"en-ZW,sn,nr,nd",878675
+C2,China,RMB,2,BeiJing,ASIA,EA,ch,42343

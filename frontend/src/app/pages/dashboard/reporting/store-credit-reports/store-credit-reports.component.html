@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="capos-title-bar">
+        Store Credit Reports
+    </div>
+
+    <mat-card class="capos-card p-4">
+		<mat-card-content>
+    <div class="table-container">
+        <div class="d-flex justify-content-between p-1 bg-white">
+            <div class="">
+            </div>
+            <div class="border-right h-100"></div>
+            <div class="align-items-right">
+                <label>Search</label>
+                <mat-form-field appearance="outline" (keyup)="search()">
+                    <input matInput [(ngModel)]="keyword" placeholder="Input keyword..." />
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table mat-table [dataSource]="pageData" class="fill">
+                <ng-container matColumnDef="customer">
+                    <th mat-header-cell *matHeaderCellDef>Customer</th>
+                    <td mat-cell *matCellDef="let element"> {{element.customer}} </td>
+                    <td mat-footer-cell *matFooterCellDef>Total</td>
+                </ng-container>
+                <ng-container matColumnDef="issued">
+                    <th mat-header-cell *matHeaderCellDef>Total Issued</th>
+                    <td mat-cell *matCellDef="let element"> {{element.issued}} </td>
+                    <td mat-footer-cell *matFooterCellDef> {{getTotalIssued()}} </td>
+                </ng-container>
+                <ng-container matColumnDef="redeemed">
+                    <th mat-header-cell *matHeaderCellDef>Total Redeemed</th>
+                    <td mat-cell *matCellDef="let element"> {{element.redeemed}} </td>
+                    <td mat-footer-cell *matFooterCellDef> {{getTotalRedeemed()}} </td>
+                </ng-container>
+                <ng-container matColumnDef="balance">
+                    <th mat-header-cell *matHeaderCellDef>Balance</th>
+                    <td mat-cell *matCellDef="let element"> {{element.balance}} </td>
+                    <td mat-footer-cell *matFooterCellDef> {{getTotalBalance()}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+            </table>
+        </div>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+    </div>
+</mat-card-content>
+</mat-card>
+</div>

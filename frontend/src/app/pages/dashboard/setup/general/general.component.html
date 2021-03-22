@@ -1,0 +1,13 @@
+<div class="tabs-container p-4">
+    <div class="capos-title-bar">
+        General Setup
+    </div>
+    <nav mat-tab-nav-bar class="capos-tab-bar">
+      <a mat-tab-link *ngFor="let nav of navs"
+          routerLinkActive="active"
+          [routerLink]="nav.link"> {{nav.name}} </a>
+    </nav>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>

@@ -1,0 +1,11 @@
+@media (max-width: 1105px) {
+  .toolbar {
+    display: none;
+  }
+}
+.toolbar a.active-link {
+  color: #000000;
+}
+.toolbar a {
+  color: #bcccde;
+}

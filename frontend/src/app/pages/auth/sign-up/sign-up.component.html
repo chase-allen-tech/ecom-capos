@@ -1,0 +1,99 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Register</mat-card-title>
+    </mat-card-header>
+
+    <form [formGroup]="signUpForm" (ngSubmit)="signUp()" class="example-form">
+
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Private web address" type="text" formControlName="private_web_address" autocomplete="private_web_address" required>
+          <mat-error *ngIf="privateWebAddressInput.invalid">
+            {{privateWebAddressInputError}}
+          </mat-error>
+        </mat-form-field>
+        <div *ngIf="duplicatedWebAdd" class="d-block invalid-feedback">
+          {{privateWebAddressInputError}}
+        </div>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Store Name" type="text" formControlName="store_name" autocomplete="store_name" required>
+          <mat-error *ngIf="storeNameInput.invalid">
+            {{storeNameInputError}}
+          </mat-error>
+        </mat-form-field>
+        <div *ngIf="duplicatedStoreName" class="d-block invalid-feedback">
+          {{storeNameInputError}}
+        </div>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="First Name" type="text" formControlName="first_name" autocomplete="first_name" required>
+          <mat-error *ngIf="firstNameInput.invalid">
+            {{firstNameInputError}}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Last Name" type="text" formControlName="last_name" autocomplete="last_name">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Email" type="email" formControlName="email" autocomplete="email" required>
+          <mat-error *ngIf="emailInput.invalid">
+            {{emailInputError}}
+          </mat-error>
+        </mat-form-field>
+        <div *ngIf="duplicatedEmail" class="d-block invalid-feedback">
+          {{emailInputError}}
+        </div>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" autocomplete="password" required>
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-error *ngIf="passwordInput.invalid">
+            {{passwordInputError}}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="City" type="text" formControlName="city" autocomplete="city" required>
+          <mat-error *ngIf="cityInput.invalid">
+            {{cityInputError}}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <label> Phone Number *</label>
+          <input ng2TelInput matInput (ng2TelOutput)="getPhoneNumber($event)" (hasError)="hasPhoneNumberError($event)" type="tel"   formControlName="phone">
+          <mat-error >
+            <ng-container *ngIf="phoneNumberInput.invalid">
+              {{phoneNumberInputError}}
+            </ng-container>
+          </mat-error>
+        </mat-form-field >
+        <div *ngIf="phoneNumberInput.valid && !isValidNumber" class="d-block invalid-feedback">
+          {{phoneNumberInputError}}
+        </div>
+
+        <mat-form-field class="example-full-width">
+          <mat-select placeholder="Currency Code" type="text" formControlName="currency_code"  required >
+            <ng-container *ngIf="countryList">
+              <mat-option *ngFor="let country of countryList" [value]="country['currency_code']">{{country['currency_code']}}</mat-option>
+            </ng-container>
+          </mat-select>
+          <mat-error *ngIf="currencyCodeInput.invalid">
+            {{currencyCodeInputError}}
+          </mat-error>
+        </mat-form-field>
+
+      </mat-card-content>
+
+      <button mat-stroked-button color="accent" class="btn-block">Register</button>
+
+      <div fxLayout="row" fxLayoutAlign="end none">
+        <a class="p-2" routerLink="/auth/sign-in" routerLinkActive="active-link">Already had account ?</a>
+      </div>
+    </form>
+  </mat-card>
+</div>

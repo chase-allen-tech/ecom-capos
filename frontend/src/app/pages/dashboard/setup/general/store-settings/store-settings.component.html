@@ -1,0 +1,54 @@
+<div class="container p-4">
+    <form [formGroup]="storeForm" (ngSubmit)="submit()" fxLayout="column" class="bg-white p-4">
+    <div fxLayout="row" fxLayout.gt-lg="row" fxLayout.gt-md="row" fxLayout.gt-sm="row"
+        fxLayout.gt-xs="column">
+        <div fxFlex="50%" class="p-1">
+                    <mat-form-field class="w-100">
+                        <mat-label>Store Name</mat-label>
+                        <input type="text" matInput formControlName="storeName" placeholder="Store name..." required />
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>Private URL</mat-label>
+                        <input type="url" matInput formControlName="privateUrl" placeholder="http://... or https://..." required />
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>Default Currency</mat-label>
+                        <mat-select formControlName="defaultCurrency" required>
+                            <mat-option *ngFor="let currency of currencies" [value]="currency.name">
+                              {{currency.name}}
+                            </mat-option>
+                          </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>Default Sales Tax</mat-label>
+                        <mat-select formControlName="defaultTax" required>
+                            <mat-option *ngFor="let tax of taxes" [value]="tax.name">
+                              {{tax.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>Receipt Template</mat-label>
+                        <input type="text" matInput formControlName="receiptTemplate" />
+                    </mat-form-field>
+        </div>
+        <div fxFlex="50%" class="p-1">
+                    <mat-form-field class="w-100">
+                        <mat-label>Current Sequence Number</mat-label>
+                        <input type="number" matInput formControlName="sequenceNumber" required value="1" />
+                    </mat-form-field>
+                    <!-- <mat-form-field class="w-100">
+                        <mat-label>Default Currency</mat-label>
+                        <mat-select formControlName="switchCurrency">
+                            <mat-option *ngFor="let currency of currencies" [value]="currency.name">
+                              {{currency.name}}
+                            </mat-option>
+                          </mat-select>
+                    </mat-form-field> -->
+        </div>
+    </div>
+    <div class="d-flex justify-content-center p-1">
+        <button type="submit" mat-raised-button color="primary">Submit</button>
+    </div>
+</form>
+</div>

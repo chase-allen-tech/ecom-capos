@@ -1,0 +1,42 @@
+{
+  "name": "caposbackendmaster",
+  "version": "1.0.0",
+  "description": "Backend system for canadian shopping web app",
+  "main": "index.js",
+  "scripts": {
+    "precommit": "npm lint",
+    "start": "cross-env NODE_ENV=production pm2 start ./index.js",
+    "dev": "nodemon ./index.js",
+    "lint": "eslint ./src/ --ignore-path .gitignore --ignore-pattern internals/scripts",
+    "lint:fix": "yarn lint --fix",
+    "lint:watch": "yarn lint --watch"
+  },
+  "keywords": [
+    "Canada",
+    "pos",
+    "shopping"
+  ],
+  "author": "Topwolf",
+  "license": "ISC",
+  "dependencies": {
+    "-": "0.0.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "csvtojson": "^2.0.10",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "helmet": "^4.2.0",
+    "http-status": "^1.4.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.14",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.4.16",
+    "nodemon": "^2.0.6",
+    "path": "^0.12.7",
+    "uuid": "^8.3.1"
+  }
+}

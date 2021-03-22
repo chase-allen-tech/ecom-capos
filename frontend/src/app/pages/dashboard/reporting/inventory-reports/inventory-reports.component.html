@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="capos-title-bar">
+        Inventory History
+    </div>
+
+	<div class="capos-help-bar">
+		<p calss="help-text"></p>
+		<div class="help-buttons">
+			<button mat-button (click)="toExcel()" class="bg-custom-2 text-white float-left">Excel</button>
+		</div>
+	</div>
+
+	<mat-card class="capos-card p-4">
+		<mat-card-content>
+			<div class="table-container">
+				<div fxLayout="row" fxLayout.gt-lg="row" fxLayout.gt-md="row" fxLayout.gt-sm="row"
+                    fxLayout.gt-xs="column">
+                    <label fxFlex="70px">Search</label>
+					<mat-form-field fxFlex="160px" appearance="outline" (keyup)="search()">
+						<input matInput [(ngModel)]="keyword">
+					</mat-form-field>
+
+                    <div></div>
+                </div>
+				<div class="table-wrapper">
+					<table mat-table [dataSource]="inventoryData" class="fill">
+						<ng-container matColumnDef="product">
+								<th mat-header-cell *matHeaderCellDef>Product</th>
+								<td mat-cell *matCellDef="let element"> {{element.product}} </td>
+						</ng-container>
+						<ng-container matColumnDef="outlet">
+								<th mat-header-cell *matHeaderCellDef>Outlet</th>
+								<td mat-cell *matCellDef="let element"> {{element.outlet}} </td>
+						</ng-container>
+						<ng-container matColumnDef="currentStock">
+								<th mat-header-cell *matHeaderCellDef>Current Stock</th>
+								<td mat-cell *matCellDef="let element"> {{element.currentStock}} </td>
+						</ng-container>
+						<ng-container matColumnDef="stockValue">
+								<th mat-header-cell *matHeaderCellDef>Stock Value</th>
+								<td mat-cell *matCellDef="let element"> {{element.stockValue}} </td>
+						</ng-container>
+						<ng-container matColumnDef="itemValue">
+							<th mat-header-cell *matHeaderCellDef>Item Value</th>
+							<td mat-cell *matCellDef="let element"> {{element.itemValue}} </td>
+						</ng-container>
+						<ng-container matColumnDef="reorderPoint">
+							<th mat-header-cell *matHeaderCellDef>Reorder Point</th>
+							<td mat-cell *matCellDef="let element"> {{element.reorderPoint}} </td>
+						</ng-container>
+						<ng-container matColumnDef="reorderAmount">
+							<th mat-header-cell *matHeaderCellDef>Reorder Amount</th>
+							<td mat-cell *matCellDef="let element"> {{element.reorderAmount}} </td>
+						</ng-container>
+		
+						<tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+						<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+				</table>
+				</div>
+				<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+			</div>
+
+		</mat-card-content>
+	</mat-card>
+
+</div>

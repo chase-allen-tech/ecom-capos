@@ -1,0 +1,43 @@
+<div class="p-3">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="h3" *ngIf="data.action === 'edit'">Edit Collection</div>
+        <div class="h3" *ngIf="data.action === 'add'">Add New Collection</div>
+        <button mat-mini-fab [matDialogClose]="false">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="doAction()">
+        <mat-form-field class="w-100">
+            <mat-label>Name</mat-label>
+            <input type="text" matInput formControlName="name" placeholder="Collection Name..." required/>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+            <mat-label>Parent Collection</mat-label>
+            <mat-select formControlName="parent" required>
+                <mat-option *ngFor="let c of collectionList" [value]="c.id">
+                  {{c.name}}
+                </mat-option>
+              </mat-select>
+        </mat-form-field>
+        <mat-form-field  class="w-100">
+            <mat-label>Image</mat-label>
+            <ngx-mat-file-input formControlName="image" placeholder="Choose collection image..." [accept]="'image/*'"></ngx-mat-file-input>
+            <mat-icon matSuffix>folder</mat-icon>
+        </mat-form-field>
+        <!-- <mat-form-field class="w-100">
+            <mat-label>Status</mat-label>
+            <ui-switch formControlName="visible"></ui-switch>
+        </mat-form-field> -->
+        <input type="hidden" formControlName="id" />
+
+        <div class="d-flex justify-content-end align-items-right p-1">
+                <button mat-raised-button class="bg-custom-1 ml-1 mt-3 text-white"
+                     color="primary">Save</button>
+        </div>
+    </form>
+</div>

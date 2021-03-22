@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="capos-title-bar">
+        Sales Reports
+    </div>
+    
+    <mat-card class="capos-card p-4 mb-4">
+        <mat-card-content>
+            <div class="table-container">
+                <div fxLayout="row" fxLayout.gt-lg="row" fxLayout.gt-md="row" fxLayout.gt-sm="row"
+                    fxLayout.gt-xs="column">
+                    <div fxFlex="33.3333%" class="p-1">
+                        <label>Date From</label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput [matDatepicker]="ds" disabled [(ngModel)]="startDate">
+                            <mat-datepicker-toggle matSuffix [for]="ds"></mat-datepicker-toggle>
+                            <mat-datepicker #ds disabled="false"></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="33.3333%" class="p-1">
+                        <label>Date End</label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input matInput [matDatepicker]="es" disabled [(ngModel)]="endDate">
+                            <mat-datepicker-toggle matSuffix [for]="es"></mat-datepicker-toggle>
+                            <mat-datepicker #es disabled="false"></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex="20%" class="p-1 search-wrapper">
+                        <button mat-raised-button class="blue-bg mb-4" (click)="search()">Search</button>
+                    </div>
+                </div>
+
+                <div class="table-wrapper">
+                    <table mat-table [dataSource]="salesData" class="fill">
+                        <ng-container matColumnDef="date">
+                            <th mat-header-cell *matHeaderCellDef>Summary</th>
+                            <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+                            <td mat-footer-cell *matFooterCellDef> Total </td>
+                        </ng-container>
+                        <ng-container matColumnDef="totals">
+                            <th mat-header-cell *matHeaderCellDef>Totals</th>
+                            <td mat-cell *matCellDef="let element"> {{element.totals}} </td>
+                            <td mat-footer-cell *matFooterCellDef> {{getTotal()}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="revenue">
+                            <th mat-header-cell *matHeaderCellDef>Revenue</th>
+                            <td mat-cell *matCellDef="let element"> {{element.revenue}} </td>
+                            <td mat-footer-cell *matFooterCellDef> {{getTotalRevenue()}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="costOfGoods">
+                            <th mat-header-cell *matHeaderCellDef>Cost of Goods</th>
+                            <td mat-cell *matCellDef="let element"> {{element.costOfGoods}} </td>
+                            <td mat-footer-cell *matFooterCellDef> {{getTotalCost()}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="grossProfit">
+                            <th mat-header-cell *matHeaderCellDef>Gross Profit</th>
+                            <td mat-cell *matCellDef="let element"> {{element.grossProfit}} </td>
+                            <td mat-footer-cell *matFooterCellDef> {{getTotalProfit()}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="margin">
+                            <th mat-header-cell *matHeaderCellDef>Margin</th>
+                            <td mat-cell *matCellDef="let element"> {{element.margin}} </td>
+                            <td mat-footer-cell *matFooterCellDef> {{getTotalMargin()}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="tax">
+                            <th mat-header-cell *matHeaderCellDef>Tax</th>
+                            <td mat-cell *matCellDef="let element"> {{element.tax}} </td>
+                            <td mat-footer-cell *matFooterCellDef> {{getTotalTax()}} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+                    </table>
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

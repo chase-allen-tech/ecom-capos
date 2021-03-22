@@ -1,0 +1,62 @@
+
+server {
+listen              80;
+listen              [::]:80;
+server_name         caposgt.com www.caposgt.com;
+return 301          https://www.caposgt.com$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    ssl on;
+    ssl_certificate 54bae65f840eb0e5.crt;
+    ssl_certificate_key  54bae65f840eb0e5.pem;
+    proxy_ssl_server_name on;
+    access_log /var/log/nginx/nginx.vhost.access.log;
+    error_log /var/log/nginx/nginx.vhost.error.log;
+    server_name caposgt.com www.caposgt.com;
+    root /var/www/capos/CaposFrontend/CaposFrontendMaster/dist/CaposFrontendMaster;
+    server_tokens off;
+    index index.html index.htm;
+
+    location / {
+        # First attempt to server request as file, then
+        # as directory, then fall back to displaying a 404.
+        try_files $uri $uri/ /index.html =404;
+    }
+    location /api {
+      include proxy_params;
+      proxy_pass http://localhost:3200;
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection 'upgrade';
+      proxy_cache_bypass $http_upgrade;
+    }
+}
+
+
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name http://18.217.176.191;
+    root /var/www/capos/CaposFrontend/CaposFrontendMaster/dist/CaposFrontendMaster;
+    server_tokens off;
+    index index.html index.htm;
+
+    location / {
+        # First attempt to server request as file, then
+        # as directory, then fall back to displaying a 404.
+        try_files $uri $uri/ /index.html =404;
+    }
+    location /api {
+      include proxy_params;
+      proxy_pass http://localhost:3000;
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection 'upgrade';
+      proxy_cache_bypass $http_upgrade;
+    }
+
+}
